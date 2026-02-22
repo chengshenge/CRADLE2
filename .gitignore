@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# local venvs
+.venv/
+venv/
+.vsk_venv/
+third_party/**/.vsk_venv/
+
+# outputs / caches (按需再加)
+results/
