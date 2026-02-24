@@ -10060,7 +10060,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "11",
+        "prediction": "11",
+        "true_false": true
     },
     "242": {
         "pid": "242",
@@ -10102,7 +10105,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "135",
+        "true_false": true
     },
     "243": {
         "pid": "243",
@@ -10139,7 +10145,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "4",
+        "prediction": "4",
+        "true_false": false
     },
     "244": {
         "pid": "244",
@@ -10178,7 +10187,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "no",
+        "true_false": true
     },
     "245": {
         "pid": "245",
@@ -10215,7 +10227,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "24",
+        "prediction": "24",
+        "true_false": true
     },
     "246": {
         "pid": "246",
@@ -10251,7 +10266,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "14",
+        "prediction": "14",
+        "true_false": false
     },
     "247": {
         "pid": "247",
@@ -10287,7 +10305,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "6356.66",
+        "prediction": "6356.66",
+        "true_false": false
     },
     "248": {
         "pid": "248",
@@ -10326,7 +10347,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "No",
+        "true_false": true
     },
     "249": {
         "pid": "249",
@@ -10362,7 +10386,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "5",
+        "prediction": "5",
+        "true_false": false
     },
     "250": {
         "pid": "250",
@@ -10404,7 +10431,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "13.0",
+        "true_false": true
     },
     "251": {
         "pid": "251",
@@ -10440,7 +10470,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "3",
+        "prediction": "3",
+        "true_false": false
     },
     "252": {
         "pid": "252",
@@ -10476,7 +10509,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "1.62",
+        "prediction": "1.62",
+        "true_false": false
     },
     "253": {
         "pid": "253",
@@ -10512,7 +10548,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "3",
+        "prediction": "3",
+        "true_false": false
     },
     "254": {
         "pid": "254",
@@ -10551,7 +10590,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "Yes",
+        "true_false": true
     },
     "255": {
         "pid": "255",
@@ -10593,7 +10635,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "40\u00b0",
+        "true_false": true
     },
     "256": {
         "pid": "256",
@@ -10635,7 +10680,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D",
+        "prediction": "6",
+        "true_false": true
     },
     "257": {
         "pid": "257",
@@ -10677,7 +10725,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "6",
+        "prediction": "6",
+        "true_false": true
     },
     "258": {
         "pid": "258",
@@ -10714,7 +10765,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "2",
+        "prediction": "2",
+        "true_false": true
     },
     "259": {
         "pid": "259",
@@ -10750,7 +10804,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "1",
+        "prediction": "1",
+        "true_false": false
     },
     "260": {
         "pid": "260",
@@ -10789,7 +10846,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "Yes",
+        "true_false": true
     },
     "261": {
         "pid": "261",
@@ -10826,7 +10886,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "5",
+        "prediction": "5",
+        "true_false": false
     },
     "262": {
         "pid": "262",
@@ -10862,7 +10925,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "39",
+        "prediction": "39",
+        "true_false": true
     },
     "263": {
         "pid": "263",
@@ -10898,7 +10964,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "8",
+        "prediction": "8",
+        "true_false": false
     },
     "264": {
         "pid": "264",
@@ -10934,7 +11003,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "3",
+        "prediction": "3",
+        "true_false": true
     },
     "265": {
         "pid": "265",
@@ -10971,7 +11043,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "10",
+        "prediction": "10",
+        "true_false": false
     },
     "266": {
         "pid": "266",
@@ -11012,7 +11087,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "oblique",
+        "true_false": true
     },
     "267": {
         "pid": "267",
@@ -11053,7 +11131,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "Serrulate",
+        "true_false": true
     },
     "268": {
         "pid": "268",
@@ -11090,7 +11171,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "10.4",
+        "prediction": "10.4",
+        "true_false": true
     },
     "269": {
         "pid": "269",
@@ -11132,7 +11216,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "160\u221a{3}m",
+        "true_false": true
     },
     "270": {
         "pid": "270",
@@ -11174,7 +11261,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "100\u00b0",
+        "true_false": true
     },
     "271": {
         "pid": "271",
@@ -11216,7 +11306,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "5",
+        "true_false": true
     },
     "272": {
         "pid": "272",
@@ -11258,7 +11351,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "4:30",
+        "true_false": true
     },
     "273": {
         "pid": "273",
@@ -11300,7 +11396,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "13",
+        "true_false": false
     },
     "274": {
         "pid": "274",
@@ -11342,7 +11441,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D",
+        "prediction": "7",
+        "true_false": true
     },
     "275": {
         "pid": "275",
@@ -11384,7 +11486,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D",
+        "prediction": "\\frac{3\u221a{5}}{2}",
+        "true_false": true
     },
     "276": {
         "pid": "276",
@@ -11426,7 +11531,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "3mm",
+        "true_false": true
     },
     "277": {
         "pid": "277",
@@ -11468,7 +11576,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "A",
+        "true_false": false
     },
     "278": {
         "pid": "278",
@@ -11510,7 +11621,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "Mic",
+        "true_false": true
     },
     "279": {
         "pid": "279",
@@ -11551,7 +11665,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "grass",
+        "true_false": true
     },
     "280": {
         "pid": "280",
@@ -11594,7 +11711,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D",
+        "prediction": "30",
+        "true_false": false
     },
     "281": {
         "pid": "281",
@@ -11634,7 +11754,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "No",
+        "true_false": true
     },
     "282": {
         "pid": "282",
@@ -11670,7 +11793,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "48",
+        "prediction": "48",
+        "true_false": false
     },
     "283": {
         "pid": "283",
@@ -11712,7 +11838,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "C",
+        "prediction": "5",
+        "true_false": true
     },
     "284": {
         "pid": "284",
@@ -11748,7 +11877,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "1",
+        "prediction": "1",
+        "true_false": true
     },
     "285": {
         "pid": "285",
@@ -11790,7 +11922,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D",
+        "prediction": "25\u00b0",
+        "true_false": true
     },
     "286": {
         "pid": "286",
@@ -11832,7 +11967,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D",
+        "prediction": "2cm",
+        "true_false": true
     },
     "287": {
         "pid": "287",
@@ -11874,7 +12012,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "R2",
+        "true_false": true
     },
     "288": {
         "pid": "288",
@@ -11917,7 +12058,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "0.0 - 0.2",
+        "true_false": true
     },
     "289": {
         "pid": "289",
@@ -11953,7 +12097,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "2",
+        "prediction": "2",
+        "true_false": true
     },
     "290": {
         "pid": "290",
@@ -11995,7 +12142,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "75\u00b0",
+        "true_false": true
     },
     "291": {
         "pid": "291",
@@ -12037,7 +12187,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D",
+        "prediction": "May '21",
+        "true_false": true
     },
     "292": {
         "pid": "292",
@@ -12076,7 +12229,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "no",
+        "true_false": true
     },
     "293": {
         "pid": "293",
@@ -12117,7 +12273,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "grouse decrease",
+        "true_false": false
     },
     "294": {
         "pid": "294",
@@ -12155,7 +12314,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "0.17",
+        "prediction": "0.17",
+        "true_false": true
     },
     "295": {
         "pid": "295",
@@ -12191,7 +12353,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "3",
+        "prediction": "3",
+        "true_false": true
     },
     "296": {
         "pid": "296",
@@ -12231,7 +12396,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "equal to",
+        "true_false": true
     },
     "297": {
         "pid": "297",
@@ -12270,7 +12438,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "Yes",
+        "true_false": true
     },
     "298": {
         "pid": "298",
@@ -12311,7 +12482,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "mountain lion",
+        "true_false": true
     },
     "299": {
         "pid": "299",
@@ -12348,7 +12522,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "21",
+        "prediction": "21",
+        "true_false": false
     },
     "300": {
         "pid": "300",
@@ -12390,7 +12567,10 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "135",
+        "true_false": false
     },
     "301": {
         "pid": "301",
@@ -12432,7 +12612,8 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A"
     },
     "302": {
         "pid": "302",
@@ -12473,6 +12654,7 @@
         "vsk_keep_traces": true,
         "vsk_som_address": "http://127.0.0.1:8080/",
         "vsk_gd_address": "http://127.0.0.1:8081/",
-        "vsk_da_address": "http://127.0.0.1:8082/"
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "D"
     }
 }
