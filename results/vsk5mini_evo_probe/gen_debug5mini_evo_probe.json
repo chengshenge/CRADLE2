@@ -1,0 +1,117 @@
+{
+    "1": {
+        "pid": "1",
+        "question": "When a spring does work on an object, we cannot find the work by simply multiplying the spring force by the object's displacement. The reason is that there is no one value for the force-it changes. However, we can split the displacement up into an infinite number of tiny parts and then approximate the force in each as being constant. Integration sums the work done in all those parts. Here we use the generic result of the integration.\r\n\r\nIn Figure, a cumin canister of mass $m=0.40 \\mathrm{~kg}$ slides across a horizontal frictionless counter with speed $v=0.50 \\mathrm{~m} / \\mathrm{s}$. It then runs into and compresses a spring of spring constant $k=750 \\mathrm{~N} / \\mathrm{m}$. When the canister is momentarily stopped by the spring, by what distance $d$ is the spring compressed?",
+        "image": "images/1.jpg",
+        "choices": null,
+        "unit": null,
+        "precision": 1.0,
+        "answer": "1.2",
+        "question_type": "free_form",
+        "answer_type": "float",
+        "metadata": {
+            "category": "math-targeted-vqa",
+            "context": "scientific figure",
+            "grade": "college",
+            "img_height": 720,
+            "img_width": 1514,
+            "language": "english",
+            "skills": [
+                "scientific reasoning"
+            ],
+            "source": "SciBench",
+            "split": "testmini",
+            "task": "textbook question answering"
+        },
+        "query": "Hint: Please answer the question requiring a floating-point number with one decimal place and provide the final value, e.g., 1.2, 1.3, 1.4, at the end.\n\nQuestion: When a spring does work on an object, we cannot find the work by simply multiplying the spring force by the object's displacement. The reason is that there is no one value for the force-it changes. However, we can split the displacement up into an infinite number of tiny parts and then approximate the force in each as being constant. Integration sums the work done in all those parts. Here we use the generic result of the integration.\r\n\r\nIn Figure, a cumin canister of mass $m=0.40 \\mathrm{~kg}$ slides across a horizontal frictionless counter with speed $v=0.50 \\mathrm{~m} / \\mathrm{s}$. It then runs into and compresses a spring of spring constant $k=750 \\mathrm{~N} / \\mathrm{m}$. When the canister is momentarily stopped by the spring, by what distance $d$ is the spring compressed?\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 0: Use energy conservation: initial kinetic energy (1/2 m v^2) is stored as spring potential (1/2 k d^2). So (1/2) m v^2 = (1/2) k d^2 => d = v * sqrt(m/k). Plug in m=0.40 kg, v=0.50 m/s, k=750 N/m to get d = 0.01155 m = 1.2 cm.\n\nACTION 0: No action needed.\n\nANSWER: 1.2 cm.",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/"
+    },
+    "2": {
+        "pid": "2",
+        "question": "what is the total volume of the measuring cup?",
+        "image": "images/2.jpg",
+        "choices": null,
+        "unit": "g",
+        "precision": null,
+        "answer": "1000",
+        "question_type": "free_form",
+        "answer_type": "integer",
+        "metadata": {
+            "category": "general-vqa",
+            "context": "natural image",
+            "grade": "daily life",
+            "img_height": 768,
+            "img_width": 1024,
+            "language": "english",
+            "skills": [
+                "numeric commonsense",
+                "arithmetic reasoning"
+            ],
+            "source": "TextVQA",
+            "split": "testmini",
+            "task": "visual question answering"
+        },
+        "query": "Hint: Please answer the question requiring an integer answer and provide the final value, e.g., 1, 2, 3, at the end.\n\nQuestion: what is the total volume of the measuring cup? (Unit: g)\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 3: The zoomed-in image clearly shows the top marking at 1000 g for the measuring cup (the scale goes up to 1000). \n\nACTION 3: No further action needed.\n\nANSWER: 1000",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/"
+    },
+    "3": {
+        "pid": "3",
+        "question": "\u25b3ABC\u7684\u4e24\u5185\u89d2\u5e73\u5206\u7ebfOB\u3001OC\u76f8\u4ea4\u4e8e\u70b9O\uff0c\u82e5\u2220A\uff1d110\u00b0\uff0c\u5219\u2220BOC\uff1d\uff08\uff09",
+        "image": "images/3.jpg",
+        "choices": [
+            "135\u00b0",
+            "140\u00b0",
+            "145\u00b0",
+            "150\u00b0"
+        ],
+        "unit": null,
+        "precision": null,
+        "answer": "145\u00b0",
+        "question_type": "multi_choice",
+        "answer_type": "text",
+        "metadata": {
+            "category": "math-targeted-vqa",
+            "context": "geometry diagram",
+            "grade": "high school",
+            "img_height": 60,
+            "img_width": 131,
+            "language": "chinese",
+            "skills": [
+                "geometry reasoning",
+                "algebraic reasoning"
+            ],
+            "source": "GeoQA+",
+            "split": "testmini",
+            "task": "geometry problem solving"
+        },
+        "query": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: \u25b3ABC\u7684\u4e24\u5185\u89d2\u5e73\u5206\u7ebfOB\u3001OC\u76f8\u4ea4\u4e8e\u70b9O\uff0c\u82e5\u2220A\uff1d110\u00b0\uff0c\u5219\u2220BOC\uff1d\uff08\uff09\nChoices:\n(A) 135\u00b0\n(B) 140\u00b0\n(C) 145\u00b0\n(D) 150\u00b0\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 0: O\u662f\u4e09\u89d2\u5f62\u7684\u5185\u5fc3\uff08\u5185\u89d2\u5e73\u5206\u7ebf\u7684\u4ea4\u70b9\uff09\uff0c\u5185\u5fc3\u6240\u5bf9\u7684\u89d2\u5ea6\u516c\u5f0f\u4e3a \u2220BOC = 90\u00b0 + \u2220A/2\u3002\u4ee3\u5165 \u2220A = 110\u00b0 \u5f97 \u2220BOC = 90\u00b0 + 55\u00b0 = 145\u00b0\u3002\n\nACTION 0: No action needed.\n\nANSWER: 145\u00b0 \uff08C\uff09.",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/"
+    }
+}
