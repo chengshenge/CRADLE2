@@ -1,0 +1,14 @@
+{
+  "patch_name": "meta_measurement_target_exec_v1",
+  "patch_type": "execution",
+  "relpath": "prompts/meta_measurement_target_exec_v1.txt",
+  "instructions": [
+    "State which quantity the question requests: current reading, current fill level, highest labeled mark, printed capacity, or nominal label value.",
+    "Inspect the visible scale or markings and write down all candidate quantities seen in the image.",
+    "Map the requested quantity to the matching visible candidate, and reject candidates that correspond to a different quantity type.",
+    "Only after that mapping is explicit should you produce the final answer."
+  ],
+  "description": "Follow this measurement-reading workflow before answering measurement questions.",
+  "intended_failure_mechanism": "measurement_target",
+  "enable": true
+}

@@ -1,0 +1,11 @@
+{
+  "accepted_version": "v1",
+  "subset": "t1_discovery",
+  "num_pids": 16,
+  "score": {
+    "total": 16,
+    "correct": 10,
+    "accuracy": 0.625
+  },
+  "results_file": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_002/prepare/t1_discovery_base/out.json"
+}

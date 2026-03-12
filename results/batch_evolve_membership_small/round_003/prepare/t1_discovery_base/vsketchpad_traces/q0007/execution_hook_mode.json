@@ -1,0 +1,6 @@
+{
+  "question_preview": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: Look at the table. Then answer the question. At a price of $790, is there a shortage or a surplus?'\nChoices:\n(A) shortage\n(B) surplus\nSolution:",
+  "hook_mode": "",
+  "hook_reason": "no_supported_execution_hook_detected",
+  "hook_disabled_by_env": true
+}

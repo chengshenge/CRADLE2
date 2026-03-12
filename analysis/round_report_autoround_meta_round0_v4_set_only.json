@@ -1,0 +1,74 @@
+{
+  "run_suffix": "autoround_meta_round0_v4_set_only",
+  "model": "gpt-5-mini",
+  "max_num_problems": 20,
+  "target_pids": [
+    "11",
+    "12",
+    "19"
+  ],
+  "val_ids": [
+    "5",
+    "6",
+    "15",
+    "20"
+  ],
+  "baseline_results": "results/round0_baseline20/out.json",
+  "baseline_val_cards": "analysis/val_cards_round0_baseline.jsonl",
+  "generate_hard_timeout_seconds": 3600,
+  "generate_stall_timeout_seconds": 240,
+  "skipped_proposals": [],
+  "candidates": [
+    {
+      "candidate_name": "meta_set_object_listing_exec_v1",
+      "original_patch_type": "execution",
+      "applied_patch_type": "prompt",
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0_v2/proposal_03_meta_set_object_listing_exec_v1.json",
+      "materialized_proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/_materialized_proposals/materialized_meta_set_object_listing_exec_v1.json",
+      "patch_config": "/home/chengshengge/merge/CRADLE2/configs/active_patches.candidate_meta_set_object_listing_exec_v1.json",
+      "output_dir": "/home/chengshengge/merge/CRADLE2/results/round0_candidate_meta_set_object_listing_exec_v1_autoround_meta_round0_v4_set_only",
+      "results_file": "/home/chengshengge/merge/CRADLE2/results/round0_candidate_meta_set_object_listing_exec_v1_autoround_meta_round0_v4_set_only/out.json",
+      "val_cards_file": "/home/chengshengge/merge/CRADLE2/analysis/val_cards_meta_set_object_listing_exec_v1_autoround_meta_round0_v4_set_only.jsonl",
+      "num_val_cards": 4,
+      "val_correct": 0,
+      "val_incorrect": 4,
+      "val_failure_types": {
+        "reasoning_or_perception_error": 4
+      },
+      "recommendation": "accept_candidate",
+      "rationale": "Improved target discovery PIDs: ['12', '19'] with non-worse val performance.",
+      "target_results": [
+        {
+          "pid": "11",
+          "gt_answer": "5",
+          "pred_answer": "1",
+          "baseline_pred_answer": "6",
+          "estimated_correct": false,
+          "baseline_estimated_correct": false,
+          "improved_vs_baseline": false,
+          "response_preview": "THOUGHT: Final confirmation — the previous analysis and visual checks show one non-red, non-tiny-matte object remains. I'll display the annotated overview and the kept object's crop (if available) and print the final integer answer. ACTION: ```python # python from IPython.display import display print(\"Final verification display (if available):\") try: display(annot_pil) except NameError: pass try: display(crop.resize((320,320))) except NameError: pass print(\"\\nFinal remaining object count (integer):\", 1) ``` ANSWER: 1"
+        },
+        {
+          "pid": "12",
+          "gt_answer": "Yes",
+          "pred_answer": "Yes",
+          "baseline_pred_answer": "B",
+          "estimated_correct": true,
+          "baseline_estimated_correct": false,
+          "improved_vs_baseline": true,
+          "response_preview": "THOUGHT 10: Final verification — I've counted 1 metallic fighter (jet) and 2 rubber objects (the bicycle's two tires). So there are fewer metallic fighters than rubber objects. ACTION 10: ```python # python # Final confirmation display and counts metallic_fighters_count = 1 rubber_objects_count = 2 print(\"Final verification:\") print(\"Metallic fighters =\", metallic_fighters_count) print(\"Rubber objects =\", rubber_objects_count) display(image_1) ``` ANSWER: (A) Yes."
+        },
+        {
+          "pid": "19",
+          "gt_answer": "400",
+          "pred_answer": "400",
+          "baseline_pred_answer": "600",
+          "estimated_correct": true,
+          "baseline_estimated_correct": false,
+          "improved_vs_baseline": true,
+          "response_preview": "THOUGHT 2: The beaker's graduated scale shows markings 100, 200, 300, and 400. Although the beaker label indicates a 600 ml capacity, the highest labeled measurement on the visible graduated scale is 400 (mL). Therefore the highest amount this glass measures (from the visible scale) is 400. ACTION 2: No action needed. ANSWER: 400"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "runner_file": "/home/chengshengge/merge/CRADLE2/scripts/run_visual_sketchpad_once.py",
+  "task_input": "/tmp/vsk_q0014_fmo4g3rf/q0014",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_003/prepare/t1_discovery_base/vsketchpad_traces",
+  "task_dir": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_003/prepare/t1_discovery_base/vsketchpad_traces/q0014",
+  "cwd_at_start": "/tmp/vsk_q0014_fmo4g3rf/q0014",
+  "model": "gpt-5-mini",
+  "task_type": "vision",
+  "execution_hook_mode": "",
+  "execution_hook_reason": "no_supported_execution_hook_detected"
+}

@@ -1,0 +1,7 @@
+{
+  "self_name": "planner",
+  "sender_name": "multimodal_user_agent",
+  "request_reply": true,
+  "silent": false,
+  "message_preview": "Here are some tools that can help you. All are python codes. They are in tools.py and will be imported for you.\nThe images has their own coordinate system. The upper left corner of the image is the origin (0, 0). All coordinates are normalized, i.e., the range is [0, 1].\nAll bounding boxes are in the format of [x, y, w, h], which is a python list. x is the horizontal coordinate of the upper-left corner of the box, y is the vertical coordinate of that corner, w is the box width, and h is the box height.\nNotice that you, as an AI assistant, is not good at locating things and describe them with coordinate. You can use tools to generate bounding boxes.\nYou are also not good at answering questions about small visual details in the image. You can use tools to zoom in on the image to see the details. Below are the tools in tools.py:\n```python\nclass AnnotatedImage:\n    # A class to represent an annotated image. It contains the annotated image and the original image.\n    \n    def __init__(self,"
+}

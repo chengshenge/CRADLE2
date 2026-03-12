@@ -1,0 +1,56 @@
+{
+  "cluster_id": "comparison_relation",
+  "proposal": {
+    "patch_name": "set_based_subtraction_v1",
+    "patch_type": "prompt",
+    "relpath": "prompts/set_based_subtraction_v1.txt",
+    "enable": true,
+    "intended_failure_mechanism": "comparison_relation",
+    "content": "When a question asks to remove or subtract objects based on attributes (for example: remove all objects with attribute A, remove all objects with attribute B, etc.), follow a set-based grounding and verification procedure before giving the final numeric answer. Do not assume any numbers without grounding. Steps to follow: 1) Identify universe: list all detected object IDs present in the image (U = {id1, id2, ...}). 2) For each removal attribute or condition named in the question, construct a set of object IDs that satisfy it (for example, R1 = {ids with attribute A}, R2 = {ids with attribute B}, ...). Ground attributes to specific object IDs—do not rely on vague area counts. 3) Compute the combined removal set using set operations appropriate to the wording: if the question says \"subtract all X and all Y\" interpret this as removing the union R = R1 ∪ R2 ∪ ...; if it says \"subtract X that are also Y\" interpret as intersection. Explicitly state which set operation you used and why. 4) Calculate counts using the sets: removed_count = |R|, remaining_set = U \\ R, remaining_count = |remaining_set|. 5) Enumerate the IDs in R and in remaining_set to verify there is no double-counting. If any object belongs to multiple removal sets, show that it appears only once in the union. 6) Provide a concise final answer: a single number (the remaining_count) followed by a one-sentence justification that references the sets (for example: \"Final answer: N. Removed objects = R1 ∪ R2 = {id3,id7,...} (count = k); remaining = U \\ R = {...} (count = N).\"). Do not produce speculative intermediate counts; always base membership on explicit object ID grounding from the image. Keep the verification step (enumeration of IDs and set operation used) brief but explicit so the counting logic is auditable."
+  },
+  "intended_failure_mechanism": "comparison_relation",
+  "why_generalizable": "Many errors in subtraction-style questions come from treating removals as sequential naive decrements (double-counting or missing overlaps) rather than set operations. This prompt enforces explicit set construction from grounded object IDs, computes unions/intersections, and produces a verified remaining-set count. The pattern applies whenever attributes or categories are used to include/exclude objects, independent of particular colors, sizes, or counts.",
+  "risk_of_overfitting": "medium",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "comparison_relation",
+    "num_cards": 1,
+    "pids": [
+      "11"
+    ],
+    "common_terms": [
+      "red",
+      "things",
+      "tiny",
+      "matte",
+      "balls",
+      "subtract",
+      "9",
+      "heuristic",
+      "detection",
+      "4",
+      "run",
+      "count"
+    ],
+    "examples": [
+      {
+        "pid": "11",
+        "gt": "5",
+        "pred": "4",
+        "question_preview": "Subtract all red things. Subtract all tiny matte balls. How many objects are left?",
+        "response_preview": "THOUGHT 9: The heuristic detection and multiple confirmations are consistent: after removing red things and tiny matte balls, 4 objects remain. I'll run one last simple confirmation action that prints the final count and displays the annotated image. ACTION 9:"
+      }
+    ]
+  },
+  "apply_to": [
+    "comparison_relation",
+    "attribute_grounding"
+  ],
+  "avoid_categories": [
+    "measurement_target"
+  ],
+  "mode": "cluster",
+  "llm_model": "gpt-5-mini",
+  "raw_model_text_preview": "{ \"patch_name\": \"set_based_subtraction_v1\", \"patch_type\": \"prompt\", \"relpath\": \"prompts/set_based_subtraction_v1.txt\", \"enable\": true, \"intended_failure_mechanism\": \"comparison_relation\", \"should_apply_to\": [ \"comparison_relation\", \"attribute_grounding\" ], \"avoid_categories\": [ \"measurement_target\" ], \"why_generalizable\": \"Many errors in subtraction-style questions come from treating removals as sequential naive decrements (double-counting or missing overlaps) rather than set operations. This prompt enforces explicit set construction from grounded object IDs, computes unions/intersections, and produces a verified remaining-set count. The pattern applies whenever attributes or categories are used to include/exclude objects, independent of particular colors, sizes, or counts.\", \"risk_of_overfitting\": \"medium\", \"content\": \"When a question asks to remove or subtract objects based on attributes (for example: remove all objects with attribute A, remove all objects with attribute B, etc.), follow a set-based grounding and verification procedure before giving the final numeric answer. Do not assume any numbers without grounding. Steps to follow:\\n\\n1) Identify universe: list all detected object IDs present in the image (U = {id1, id2, ...}).\\n2) For each removal attribute or condition named in the question, construct a set of object IDs that satisfy it (for example, R1 = {ids with attribute A}, R2 = {ids with attribute B}, ...). Ground attributes to specific object IDs—do not rely on vague area counts.\\n3) Compute the combined removal set using set operations appropriate to the wording: if the question says \\\"subtract all X and all Y\\\" interpret this as removing the union R = R1 ∪ R2 ∪ ...; if it says \\\"subtract X that are also Y\\\" interpret as intersection. Explicitly state wh"
+}

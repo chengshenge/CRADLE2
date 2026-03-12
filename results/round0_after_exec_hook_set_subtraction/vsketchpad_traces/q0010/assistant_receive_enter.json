@@ -1,0 +1,7 @@
+{
+  "self_name": "planner",
+  "sender_name": "multimodal_user_agent",
+  "request_reply": true,
+  "silent": false,
+  "message_preview": "OBSERVATION: Execution success. The output is as follows:\nntop_left - original:\n\n<img src='/home/chengshengge/merge/CRADLE2/results/round0_after_exec_hook_set_subtraction/vsketchpad_traces/q0010/ea4cf261db9f4f498d09f6d359da05a8.png'>\ntop_left - rotated 90°:\n\n<img src='/home/chengshengge/merge/CRADLE2/results/round0_after_exec_hook_set_subtraction/vsketchpad_traces/q0010/d8d3190572294e62980633a6b5af7809.png'>\ntop_left - rotated 180°:\n\n<img src='/home/chengshengge/merge/CRADLE2/results/round0_after_exec_hook_set_subtraction/vsketchpad_traces/q0010/b8f2bd5d20204ec1baba1fae007b6ecf.png'>\ntop_left - rotated 270°:\n\n<img src='/home/chengshengge/merge/CRADLE2/results/round0_after_exec_hook_set_subtraction/vsketchpad_traces/q0010/b8c2eaaea1e3402b8ffa787283169bdd.png'>\nntop_center - original:\n\n<img src='/home/chengshengge/merge/CRADLE2/results/round0_after_exec_hook_set_subtraction/vsketchpad_traces/q0010/bf33918972f9404d98726ba43a6048d4.png'>\ntop_center - rotated 90°:\n\n<img src='/home/chengshen"
+}

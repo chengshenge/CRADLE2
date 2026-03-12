@@ -1,0 +1,75 @@
+{
+  "run_suffix": "autoround_gpt5_relation_single_pass",
+  "model": "gpt-5-mini",
+  "max_num_problems": 20,
+  "target_pids": [
+    "11",
+    "12",
+    "19"
+  ],
+  "val_ids": [
+    "5",
+    "6",
+    "15",
+    "20"
+  ],
+  "baseline_results": "results/round0_baseline20/out.json",
+  "baseline_val_cards": "analysis/val_cards_round0_baseline.jsonl",
+  "generate_hard_timeout_seconds": 3600,
+  "generate_stall_timeout_seconds": 240,
+  "skipped_proposals": [],
+  "candidates": [
+    {
+      "candidate_name": "relation_compare_single_pass_v1",
+      "original_patch_type": "execution",
+      "applied_patch_type": "prompt",
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0_gpt5/proposal_01_relation_compare_single_pass_v1.json",
+      "materialized_proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/_materialized_proposals/materialized_relation_compare_single_pass_v1.json",
+      "patch_config": "/home/chengshengge/merge/CRADLE2/configs/active_patches.candidate_relation_compare_single_pass_v1.json",
+      "output_dir": "/home/chengshengge/merge/CRADLE2/results/round0_candidate_relation_compare_single_pass_v1_autoround_gpt5_relation_single_pass",
+      "results_file": "/home/chengshengge/merge/CRADLE2/results/round0_candidate_relation_compare_single_pass_v1_autoround_gpt5_relation_single_pass/out.json",
+      "val_cards_file": "/home/chengshengge/merge/CRADLE2/analysis/val_cards_relation_compare_single_pass_v1_autoround_gpt5_relation_single_pass.jsonl",
+      "num_val_cards": 4,
+      "val_correct": 1,
+      "val_incorrect": 3,
+      "val_failure_types": {
+        "correct": 1,
+        "reasoning_or_perception_error": 3
+      },
+      "recommendation": "accept_candidate",
+      "rationale": "Improved target discovery PIDs: ['12', '19'] with non-worse val performance.",
+      "target_results": [
+        {
+          "pid": "11",
+          "gt_answer": "5",
+          "pred_answer": "6",
+          "baseline_pred_answer": "6",
+          "estimated_correct": false,
+          "baseline_estimated_correct": false,
+          "improved_vs_baseline": false,
+          "response_preview": "THOUGHT: I've inspected and zoomed the objects and confirmed the count: 7 total objects, 1 red object to subtract, and 0 tiny matte balls to subtract. I'll display the image one last time and print the final subtraction result. ACTION: ```python # ACTION (final confirmation) # Display the image and print the final subtraction result. display(image_1) total_objects = 7 red_things = 1 tiny_matte_balls = 0 remaining = total_objects - red_things - tiny_matte_balls print(\"Final confirmation:\") print(\"Total objects (visual count):\", total_objects) print(\"Red things to subtract:\", red_things) print(\"Tiny matte balls to subtract:\", tiny_matte_balls) print(\"Remaining objects after subtraction:\", remaining) ``` ANSWER: 6"
+        },
+        {
+          "pid": "12",
+          "gt_answer": "Yes",
+          "pred_answer": "Yes",
+          "baseline_pred_answer": "B",
+          "estimated_correct": true,
+          "baseline_estimated_correct": false,
+          "improved_vs_baseline": true,
+          "response_preview": "THOUGHT 9: We've visually confirmed there is 1 metallic fighter (jet) and 2 rubber objects (bike tires). No further processing is needed — provide the final confirmation and display the image. ACTION 9: ```python # python # Final confirmation and display metallic_fighters = 1 rubber_objects = 2 print(\"Final confirmation:\") print(\"Metallic fighters:\", metallic_fighters) print(\"Rubber objects:\", rubber_objects) print(\"\\nConclusion: There are fewer metallic fighters than rubber objects.\") print(\"Answer choice: (A) Yes\") display(image_1) ``` ANSWER: (A) Yes."
+        },
+        {
+          "pid": "19",
+          "gt_answer": "400",
+          "pred_answer": "400",
+          "baseline_pred_answer": "600",
+          "estimated_correct": true,
+          "baseline_estimated_correct": false,
+          "improved_vs_baseline": true,
+          "response_preview": "THOUGHT 3: From the displayed image, the graduated scale on the beaker is labeled up to 400 (the \"600ml\" is the printed total capacity, but the measurement markings go up to 400). So the highest measured amount on the scale is 400. ACTION 3: No action needed. ANSWER: 400"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "question_preview": "Hint: Please answer the question requiring a floating-point number with one decimal place and provide the final value, e.g., 1.2, 1.3, 1.4, at the end.\n\nQuestion: When a spring does work on an object, we cannot find the work by simply multiplying the spring force by the object's displacement. The reason is that there is no one value for the force-it changes. However, we can split the displacement up into an infinite number of tiny parts and then approximate the force in each as being constant. I",
+  "hook_mode": "",
+  "hook_reason": "no_supported_execution_hook_detected",
+  "hook_disabled_by_env": false
+}

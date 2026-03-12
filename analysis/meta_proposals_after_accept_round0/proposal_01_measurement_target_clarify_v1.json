@@ -1,0 +1,8 @@
+{
+  "patch_name": "measurement_target_clarify_v1",
+  "patch_type": "prompt",
+  "relpath": "prompts/measurement_target_clarify_v1.txt",
+  "enable": true,
+  "intended_failure_mechanism": "measurement_target",
+  "content": "Before answering, do these three short steps. 1) Restate the measurement target in one brief sentence: explicitly name the quantity being asked for (for example: 'compare the time taken', 'the highest measured volume', 'the temperature reading'). 2) Classify the question type as one of: Comparative (asks which of two conditions yields a larger/smaller value), Single-value extraction (asks for a numeric or labeled value), Extremum/Range (asks for highest/lowest or range), or Boolean/Yes-No. 3) Based on that classification, apply the matching strategy: for Comparative — identify the two conditions and the specific metric being compared (e.g., time, distance, capacity), then determine which condition has the greater/lesser value using only stated evidence; for Single-value extraction — locate the explicit numeric or named value and report it; for Extremum/Range — scan all labeled measurements and report the highest/lowest or the explicit range; for Boolean — look for a direct statement of yes/no or an explicit comparative result. Always produce a one-sentence justification that cites the explicit evidence used, then give the concise final answer. Do not assume unstated facts or introduce new entities."
+}

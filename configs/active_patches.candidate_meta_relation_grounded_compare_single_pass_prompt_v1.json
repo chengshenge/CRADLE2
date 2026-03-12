@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "enabled": {
+    "prompts": [
+      "prompts/hello_patch.txt",
+      "prompts/meta_relation_grounded_compare_single_pass_prompt_v1.txt"
+    ],
+    "tools": [],
+    "policies": [],
+    "extractors": [],
+    "verifiers": []
+  }
+}

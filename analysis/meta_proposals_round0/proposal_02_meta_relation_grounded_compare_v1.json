@@ -1,0 +1,7 @@
+{
+  "patch_name": "meta_relation_grounded_compare_v1",
+  "patch_type": "prompt",
+  "relpath": "prompts/meta_relation_grounded_compare_v1.txt",
+  "content": "Before answering comparison questions, explicitly identify the two compared sets and the evidence for each set. Compute both quantities from grounded object lists, then restate the exact relation being asked and verify whether it is true. Do not answer Yes or No until the compared sets and their counts have both been made explicit.",
+  "enable": true
+}

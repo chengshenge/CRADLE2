@@ -1,0 +1,44 @@
+{
+  "generator_mode": "round_report_stall_refinement",
+  "source_candidate": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0_refined/proposal_02_meta_relation_grounded_compare_exec_v1.json",
+  "proposal": {
+    "patch_name": "meta_relation_grounded_compare_single_pass_prompt_v1",
+    "patch_type": "prompt",
+    "relpath": "prompts/meta_relation_grounded_compare_single_pass_prompt_v1.txt",
+    "content": "Apply this workflow only to explicit comparison questions asking whether one set is greater, fewer, more, less, left of, right of, behind, or in front of another set. Identify set A and set B exactly as named in the question. Make one grounded pass: write one object list for set A and one object list for set B with visible evidence for each object. Do not recursively re-zoom, re-count, or restart the comparison after the first grounded pass. If some evidence remains ambiguous after the single pass, stop and answer from the best grounded counts already obtained. Do not use this workflow for measurement-reading or subtract/remove counting questions.",
+    "intended_failure_mechanism": "comparison_relation",
+    "enable": true,
+    "should_apply_to": [
+      "comparison_relation",
+      "attribute_grounding"
+    ],
+    "avoid_categories": [
+      "measurement_target",
+      "set_counting_or_dedup"
+    ]
+  },
+  "intended_failure_mechanism": "comparison_relation",
+  "why_generalizable": "The prior execution candidate stalled during a comparison workflow, so this refinement keeps the same mechanism but adds a bounded single-pass policy to reduce looping and repeated recounting.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "stall_refinement_comparison_relation",
+    "num_cards": 1,
+    "pids": [],
+    "common_terms": [
+      "single_pass",
+      "bounded_compare",
+      "no_recursive_recount"
+    ],
+    "examples": [
+      {
+        "pid": "",
+        "gt": null,
+        "pred": null,
+        "question_preview": "",
+        "response_preview": "{}"
+      }
+    ]
+  }
+}

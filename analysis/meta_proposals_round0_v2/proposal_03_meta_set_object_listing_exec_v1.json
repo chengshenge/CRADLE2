@@ -1,0 +1,15 @@
+{
+  "patch_name": "meta_set_object_listing_exec_v1",
+  "patch_type": "execution",
+  "relpath": "prompts/meta_set_object_listing_exec_v1.txt",
+  "instructions": [
+    "Enumerate the visible physical objects one by one before doing any subtraction.",
+    "For each object, note only the attributes relevant to the removal conditions.",
+    "Construct the removed set by physical identity rather than by attribute labels.",
+    "If one object satisfies multiple removal conditions, include it only once in the removed set.",
+    "Construct the remaining set explicitly from the unique object list, then answer from that remaining set."
+  ],
+  "description": "Follow this object-level execution workflow before answering object-removal or counting questions.",
+  "intended_failure_mechanism": "set_counting_or_dedup",
+  "enable": true
+}

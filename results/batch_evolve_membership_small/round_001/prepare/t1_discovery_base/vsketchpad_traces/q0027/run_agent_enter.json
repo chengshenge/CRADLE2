@@ -1,0 +1,8 @@
+{
+  "task_input": "/tmp/vsk_q0027_r11qkr66/q0027",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_001/prepare/t1_discovery_base/vsketchpad_traces",
+  "task_type": "vision",
+  "task_name": null,
+  "VSK_TASK_DIR_env": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_001/prepare/t1_discovery_base/vsketchpad_traces/q0027",
+  "VSK_EXECUTION_HOOK_MODE": ""
+}

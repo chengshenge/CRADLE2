@@ -1,0 +1,42 @@
+{
+  "runner": "/home/chengshengge/merge/CRADLE2/scripts/run_visual_sketchpad_once.py",
+  "task_input": "/tmp/vsk_q0001_gk40vxud/q0001",
+  "trace_root": "/home/chengshengge/merge/CRADLE2/results/targets_111219_nohook_rep3/vsketchpad_traces",
+  "out_dir": "/home/chengshengge/merge/CRADLE2/results/targets_111219_nohook_rep3/vsketchpad_traces/q0001",
+  "cwd": "/tmp/vsk_q0001_gk40vxud/q0001",
+  "cmd": [
+    "/home/chengshengge/ENTER/envs/vsk_gpu2/bin/python",
+    "/home/chengshengge/merge/CRADLE2/scripts/run_visual_sketchpad_once.py",
+    "--vsk_root",
+    "/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad",
+    "--task_input",
+    "/tmp/vsk_q0001_gk40vxud/q0001",
+    "--output_dir",
+    "/home/chengshengge/merge/CRADLE2/results/targets_111219_nohook_rep3/vsketchpad_traces",
+    "--task_type",
+    "vision",
+    "--api_key",
+    "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",
+    "--model",
+    "gpt-5-mini",
+    "--temperature",
+    "0.0",
+    "--max_reply",
+    "10",
+    "--som_address",
+    "http://127.0.0.1:8080/",
+    "--gd_address",
+    "http://127.0.0.1:8081/",
+    "--da_address",
+    "http://127.0.0.1:8082/",
+    "--patch_config",
+    "configs/active_patches.accepted_relation_compare_single_pass_v1.clean.json",
+    "--patch_root",
+    "generated_patches",
+    "--patch_debug_dump"
+  ],
+  "env_subset": {
+    "VSK_TASK_DIR": "/home/chengshengge/merge/CRADLE2/results/targets_111219_nohook_rep3/vsketchpad_traces/q0001",
+    "VSK_STARTUP_MARKER_PATH": "/home/chengshengge/merge/CRADLE2/results/targets_111219_nohook_rep3/vsketchpad_traces/q0001/runner_started.json"
+  }
+}

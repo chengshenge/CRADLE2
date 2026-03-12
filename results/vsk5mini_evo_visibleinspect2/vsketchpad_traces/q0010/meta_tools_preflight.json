@@ -1,0 +1,19 @@
+{
+  "builtin_tools": [
+    "detection",
+    "sliding_window_detection",
+    "segment_and_mark",
+    "depth",
+    "crop_image",
+    "zoom_in_image_by_bbox",
+    "overlay_images"
+  ],
+  "dynamic_tools": [],
+  "meta_tools": [
+    "inspect_tools(include_dynamic=True)",
+    "propose_tool(name, description, code)",
+    "test_candidate_tool(candidate_id, image_path=None, question=None)",
+    "commit_candidate_tool(candidate_id, enable=True)",
+    "disable_tool(name)"
+  ]
+}

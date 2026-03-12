@@ -1,0 +1,9 @@
+{
+  "runner_file": "/home/chengshengge/merge/CRADLE2/scripts/run_visual_sketchpad_once.py",
+  "task_input": "/tmp/vsk_q0001_rqkipean/q0001",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/smoke_count_set_dedup_v1_brokenpipefix_4/vsketchpad_traces",
+  "task_dir": "/home/chengshengge/merge/CRADLE2/results/smoke_count_set_dedup_v1_brokenpipefix_4/vsketchpad_traces/q0001",
+  "cwd_at_start": "/tmp/vsk_q0001_rqkipean/q0001",
+  "model": "gpt-5-mini",
+  "task_type": "vision"
+}

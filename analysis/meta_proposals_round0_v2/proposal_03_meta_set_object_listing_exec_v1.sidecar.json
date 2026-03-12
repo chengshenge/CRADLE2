@@ -1,0 +1,53 @@
+{
+  "cluster_id": "set_counting_or_dedup",
+  "proposal": {
+    "patch_name": "meta_set_object_listing_exec_v1",
+    "patch_type": "execution",
+    "relpath": "prompts/meta_set_object_listing_exec_v1.txt",
+    "instructions": [
+      "Enumerate the visible physical objects one by one before doing any subtraction.",
+      "For each object, note only the attributes relevant to the removal conditions.",
+      "Construct the removed set by physical identity rather than by attribute labels.",
+      "If one object satisfies multiple removal conditions, include it only once in the removed set.",
+      "Construct the remaining set explicitly from the unique object list, then answer from that remaining set."
+    ],
+    "description": "Follow this object-level execution workflow before answering object-removal or counting questions.",
+    "intended_failure_mechanism": "set_counting_or_dedup",
+    "enable": true
+  },
+  "intended_failure_mechanism": "set_counting_or_dedup",
+  "why_generalizable": "This proposal is phrased in terms of reusable reasoning workflows rather than instance-specific nouns. It targets a failure mechanism expected to recur across related visual reasoning questions.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "set_counting_or_dedup",
+    "num_cards": 1,
+    "pids": [
+      "11"
+    ],
+    "common_terms": [
+      "red",
+      "red_sphere",
+      "to_subtract",
+      "len",
+      "subtract",
+      "concise",
+      "summary",
+      "confirmation",
+      "remaining",
+      "f",
+      "things",
+      "tiny"
+    ],
+    "examples": [
+      {
+        "pid": "11",
+        "gt": "5",
+        "pred": "6",
+        "question_preview": "Subtract all red things. Subtract all tiny matte balls. How many objects are left?",
+        "response_preview": "THOUGHT: I'll print a final concise summary, display the original image and the red sphere crop for last visual confirmation, and return the final integer answer. ACTION: ```python # Final action: concise summary and confirmation display objects = [ \"blue_cyli"
+      }
+    ]
+  }
+}

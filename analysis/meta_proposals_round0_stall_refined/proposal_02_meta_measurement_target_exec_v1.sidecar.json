@@ -1,0 +1,60 @@
+{
+  "generator_mode": "cluster",
+  "cluster_id": "measurement_target",
+  "proposal": {
+    "patch_name": "meta_measurement_target_exec_v1",
+    "patch_type": "execution",
+    "relpath": "prompts/meta_measurement_target_exec_v1.txt",
+    "instructions": [
+      "State which quantity the question requests: current reading, current fill level, highest labeled mark, printed capacity, or nominal label value.",
+      "Inspect the visible scale or markings and write down all candidate quantities seen in the image.",
+      "Map the requested quantity to the matching visible candidate, and reject candidates that correspond to a different quantity type.",
+      "Only after that mapping is explicit should you produce the final answer."
+    ],
+    "description": "Follow this measurement-reading workflow before answering measurement questions.",
+    "intended_failure_mechanism": "measurement_target",
+    "should_apply_to": [
+      "measurement_target"
+    ],
+    "avoid_categories": [],
+    "enable": true
+  },
+  "intended_failure_mechanism": "measurement_target",
+  "why_generalizable": "This proposal is phrased in terms of reusable reasoning workflows rather than instance-specific nouns. It targets a failure mechanism expected to recur across related visual reasoning questions.",
+  "risk_of_overfitting": "medium",
+  "forbidden_singleton_terms_detected": true,
+  "dangerous_terms": [
+    "5",
+    "600ml"
+  ],
+  "cluster_summary": {
+    "cluster_name": "measurement_target",
+    "num_cards": 1,
+    "pids": [
+      "19"
+    ],
+    "common_terms": [
+      "highest",
+      "amount",
+      "measures",
+      "5",
+      "class",
+      "zoomed",
+      "clearly",
+      "shows",
+      "printed",
+      "capacity",
+      "600ml",
+      "beaker"
+    ],
+    "examples": [
+      {
+        "pid": "19",
+        "gt": "400",
+        "pred": "600",
+        "question_preview": "what is the highest amount this class measures?",
+        "response_preview": "THOUGHT 5: The zoomed-in image clearly shows the printed capacity \"600ml\" on the beaker, which is the highest amount this glass measures. ACTION 5: No action needed. ANSWER: 600"
+      }
+    ]
+  }
+}

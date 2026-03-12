@@ -1,0 +1,53 @@
+{
+  "cluster_id": "set_counting_or_dedup",
+  "proposal": {
+    "patch_name": "meta_set_object_listing_v1",
+    "patch_type": "prompt",
+    "relpath": "prompts/meta_set_object_listing_v1.txt",
+    "content": "Before answering object-removal or counting questions, first list the visible physical objects one by one. Then list the removed objects by physical identity, not only by attribute labels. If one object satisfies multiple removal conditions, count it as removed only once. Finally compute the remaining set from the unique object list and confirm that the final count matches the explicitly listed remaining objects.",
+    "enable": true
+  },
+  "intended_failure_mechanism": "set_counting_or_dedup",
+  "why_generalizable": "This proposal is phrased in terms of target reasoning mechanisms rather than single-problem entities. It avoids instance-specific nouns and instead constrains a general workflow that can recur across related visual reasoning questions.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "set_counting_or_dedup",
+    "num_cards": 2,
+    "pids": [
+      "11",
+      "18"
+    ],
+    "common_terms": [
+      "wax",
+      "print",
+      "display",
+      "thin",
+      "red",
+      "action",
+      "red_sphere",
+      "to_subtract",
+      "len",
+      "linda",
+      "layer",
+      "snowboard"
+    ],
+    "examples": [
+      {
+        "pid": "11",
+        "gt": "5",
+        "pred": "6",
+        "question_preview": "Subtract all red things. Subtract all tiny matte balls. How many objects are left?",
+        "response_preview": "THOUGHT: I'll print a final concise summary, display the original image and the red sphere crop for last visual confirmation, and return the final integer answer. ACTION: ```python # Final action: concise summary and confirmation display objects = [ \"blue_cyli"
+      },
+      {
+        "pid": "18",
+        "gt": "Does Linda's snowboard slide down a hill in less time when it has a layer of wax or when it does not have a layer of wax?",
+        "pred": "B",
+        "question_preview": "The passage below describes an experiment. Read the passage and then follow the instructions below. Linda applied a thin layer of wax to the underside of her snowboard and rode the board straight down a hill. Then, she r",
+        "response_preview": "THOUGHT 0: Linda's experiment compares rides with a thin layer of wax versus rides without wax, alternating conditions and averaging times. It does not compare thin vs thick wax. Therefore it can answer whether having a layer of wax (thin) affects sliding time"
+      }
+    ]
+  }
+}

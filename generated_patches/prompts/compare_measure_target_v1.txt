@@ -1,0 +1,7 @@
+Before giving the final answer, apply this target-and-relation check:
+1. For comparison questions with words like greater, fewer, more, less, left of, right of, behind, or in front of, compute both compared quantities explicitly.
+2. After computing both sides, restate the exact relation being asked and verify whether it is true before answering Yes or No.
+3. Do not answer from intuition if the computed quantities and the verbal relation have not been matched explicitly.
+4. For measurement-reading questions, first identify the exact target quantity requested by the question: current fill level, current reading, maximum capacity, printed label value, or scale marking.
+5. Do not confuse a container's printed maximum capacity with the current measured amount inside it.
+6. Before the final answer, restate the requested target quantity or comparison in one short sentence and confirm the answer matches that target.

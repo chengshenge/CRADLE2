@@ -1,0 +1,6 @@
+{
+  "question_preview": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: Which object comes next?\nChoices:\n(A) A\n(B) B\n(C) C\n(D) D\n(E) E\nSolution:",
+  "hook_mode": "",
+  "hook_reason": "no_supported_execution_hook_detected",
+  "hook_disabled_by_env": false
+}

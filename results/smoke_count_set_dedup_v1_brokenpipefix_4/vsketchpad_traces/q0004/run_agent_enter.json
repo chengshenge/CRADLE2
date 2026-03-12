@@ -1,0 +1,7 @@
+{
+  "task_input": "/tmp/vsk_q0004_2zt8k418/q0004",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/smoke_count_set_dedup_v1_brokenpipefix_4/vsketchpad_traces",
+  "task_type": "vision",
+  "task_name": null,
+  "VSK_TASK_DIR_env": "/home/chengshengge/merge/CRADLE2/results/smoke_count_set_dedup_v1_brokenpipefix_4/vsketchpad_traces/q0004"
+}

@@ -1,0 +1,7 @@
+{
+  "task_input": "/tmp/vsk_q0014_znyppo3b/q0014",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/round0_candidate_relation_compare_single_pass_v1_autoround_gpt5_relation_single_pass/vsketchpad_traces",
+  "task_type": "vision",
+  "task_name": null,
+  "VSK_TASK_DIR_env": "/home/chengshengge/merge/CRADLE2/results/round0_candidate_relation_compare_single_pass_v1_autoround_gpt5_relation_single_pass/vsketchpad_traces/q0014"
+}

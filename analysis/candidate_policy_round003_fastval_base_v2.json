@@ -1,0 +1,22 @@
+{
+  "protocol_version": "candidate_policy_v2",
+  "round_id": 3,
+  "parent_version": "v1",
+  "candidate_type": "extraction_candidate",
+  "candidate_family": "extraction_family",
+  "rationale": "Dominant residuals look like answer extraction/output-format issues; improve extraction before changing reasoning.",
+  "target_failure_family": "extraction_failure",
+  "target_pids": [
+    "102"
+  ],
+  "builder_action": "build_extraction_candidate_v1",
+  "expected_risks": [
+    "May improve metrics without improving actual reasoning quality"
+  ],
+  "validation_targets": [
+    "t2_fastval",
+    "t2_fullval"
+  ],
+  "dominant_failure_count": 1,
+  "num_incorrect": 3
+}

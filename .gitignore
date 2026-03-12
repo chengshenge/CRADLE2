@@ -1,13 +1,41 @@
+# virtual env
+.cradle_venv/
+.venv/
+venv/
+
+# python cache
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
 
-# local venvs
-.venv/
-venv/
-.vsk_venv/
-third_party/**/.vsk_venv/
+# logs
+*.log
 
-# outputs / caches (按需再加)
-results/
+# temp
+tmp/
+*.tmp
+
+# model/data artifacts
+models/
+data/
+
+# jupyter
+.ipynb_checkpoints/
+
+# OS/editor noise
+.DS_Store
+
+# generated candidate repo snapshots
+generated_candidates/*/repo/
+generated_patches/*/repo/
+
+# generated nested repo snapshots
+generated_candidates/*/repo/
+generated_patches/*/repo/
+
+# large / local-only artifacts
+.cradle_venv/
+models/
+data/
+tmp/
+*.log

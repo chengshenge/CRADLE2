@@ -1,0 +1,554 @@
+#!/usr/bin/env python3
+"""
+Run one round of the online batch-evolution protocol.
+
+This is a minimal orchestrator intended to get the top-down road running.
+
+Stages:
+- prepare  : run accepted/base env on T1-discovery
+- validate : run base and candidate on T2-fastval, then optionally T2-fullval
+- all      : prepare + validate
+
+Important:
+- Candidate is treated as an ENVIRONMENT DELTA, not just a prompt delta.
+- You can point base and candidate to different repo roots and different patch configs.
+- This script assumes evaluation.generate_response supports:
+    --split-json
+    --split-key
+    --only-pids
+  as added in your working repo.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import re
+import subprocess
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+
+# ----------------------------
+# utilities
+# ----------------------------
+def read_json(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_json(obj: Any, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def ensure_dir(path: Path) -> None:
+    path.mkdir(parents=True, exist_ok=True)
+
+
+def ceil_margin_count(size: int, frac: float) -> int:
+    return int(math.ceil(size * frac))
+
+
+def normalize_text(x: Any) -> str:
+    if x is None:
+        return ""
+    return str(x).strip()
+
+
+def pick_truth(rec: Dict[str, Any]) -> str:
+    # MathVista usually carries `answer`.
+    for key in ["answer", "gt_answer", "ground_truth", "label"]:
+        if key in rec and rec[key] not in [None, ""]:
+            return normalize_text(rec[key])
+    return ""
+
+
+def pick_choices(rec: Dict[str, Any]) -> List[str]:
+    choices = rec.get("choices")
+    if isinstance(choices, list):
+        return [normalize_text(x) for x in choices]
+    return []
+
+
+def extract_letter(text: str) -> Optional[str]:
+    # last occurring A/B/C/D/E style marker
+    matches = re.findall(r"\(([A-E])\)|\b([A-E])\b", text, flags=re.IGNORECASE)
+    if not matches:
+        return None
+    last = matches[-1]
+    for g in reversed(last):
+        if g:
+            return g.upper()
+    return None
+
+
+def extract_last_number(text: str) -> Optional[str]:
+    nums = re.findall(r"-?\d+(?:\.\d+)?", text)
+    if not nums:
+        return None
+    return nums[-1]
+
+
+def extract_final_answer_from_jsonish(text: str) -> Optional[str]:
+    m = re.search(r'"final_answer"\s*:\s*("?[^,"\n}]+")', text)
+    if not m:
+        return None
+    val = m.group(1).strip().strip('"')
+    return val
+
+
+def extract_pred(rec: Dict[str, Any]) -> str:
+    response = normalize_text(rec.get("response", ""))
+    if not response:
+        return ""
+
+    # Prefer explicit JSON-like final_answer if present
+    fa = extract_final_answer_from_jsonish(response)
+    if fa:
+        return fa
+
+    # Try final ANSWER line first
+    answer_lines = [ln for ln in response.splitlines() if "ANSWER" in ln.upper()]
+    if answer_lines:
+        tail = answer_lines[-1]
+        # letter answer
+        letter = extract_letter(tail)
+        if letter:
+            choices = pick_choices(rec)
+            if choices:
+                idx = ord(letter) - ord("A")
+                if 0 <= idx < len(choices):
+                    return choices[idx]
+            return letter
+        # numeric answer
+        num = extract_last_number(tail)
+        if num is not None:
+            return num
+
+    # fallback: letter anywhere
+    letter = extract_letter(response)
+    if letter:
+        choices = pick_choices(rec)
+        if choices:
+            idx = ord(letter) - ord("A")
+            if 0 <= idx < len(choices):
+                return choices[idx]
+        return letter
+
+    # fallback: last number anywhere
+    num = extract_last_number(response)
+    if num is not None:
+        return num
+
+    return response
+
+
+def score_results(out_json: Path) -> Dict[str, Any]:
+    data = read_json(out_json)
+    total = 0
+    correct = 0
+    details = []
+
+    for pid, rec in data.items():
+        truth = normalize_text(pick_truth(rec))
+        pred = normalize_text(extract_pred(rec))
+
+        ok = False
+        if truth and pred:
+            truth_l = truth.lower().rstrip(".")
+            pred_l = pred.lower().rstrip(".")
+            ok = truth_l == pred_l
+
+        total += 1
+        correct += int(ok)
+        details.append({
+            "pid": str(pid),
+            "truth": truth,
+            "pred": pred,
+            "correct": ok,
+        })
+
+    acc = (correct / total) if total else 0.0
+    return {
+        "total": total,
+        "correct": correct,
+        "accuracy": acc,
+        "details": details,
+    }
+
+
+def run_cmd(cmd: List[str], cwd: Path) -> None:
+    print("\n[RUN]", " ".join(cmd))
+    subprocess.run(cmd, cwd=str(cwd), check=True)
+
+
+def make_subset_split_json(out_path: Path, pids: List[str], split_key: str = "selected") -> Path:
+    payload = {
+        "seed": None,
+        split_key: [str(x) for x in pids],
+    }
+    write_json(payload, out_path)
+    return out_path
+
+
+@dataclass
+class EnvSpec:
+    name: str
+    repo_root: Path
+    patch_config: str
+
+
+# ----------------------------
+# plan helpers
+# ----------------------------
+def get_round(plan_json: Path, round_id: int) -> Dict[str, Any]:
+    plan = read_json(plan_json)
+    for r in plan["rounds"]:
+        if int(r["round_id"]) == int(round_id):
+            return r
+    raise KeyError(f"round_id={round_id} not found in {plan_json}")
+
+
+# ----------------------------
+# generate_response runner
+# ----------------------------
+def run_generate_response_for_subset(
+    env: EnvSpec,
+    subset_name: str,
+    pids: List[str],
+    subset_root: Path,
+    model: str,
+    patch_root: str,
+    split_json_template_path: Path,
+    extra_generate_args: List[str],
+) -> Path:
+    ensure_dir(subset_root)
+
+    subset_split_json = make_subset_split_json(
+        out_path=split_json_template_path,
+        pids=pids,
+        split_key="selected",
+    )
+
+    out_json = subset_root / "out.json"
+
+    cmd = [
+        sys.executable,
+        "-m",
+        "evaluation.generate_response",
+        "--agent", "visual_sketchpad",
+        "--model", model,
+        "--test_split_name", "testmini",
+        "--split-json", str(subset_split_json.resolve()),
+        "--split-key", "selected",
+        "--only-pids", ",".join(str(x) for x in pids),
+        "--max_num_problems", str(len(pids)),
+        "--output_dir", str(subset_root.resolve()),
+        "--output_file", "out.json",
+        "--patch_config", env.patch_config,
+        "--patch_root", patch_root,
+        "--vsk_keep_traces",
+        "--patch_debug_dump",
+        "--rerun",
+    ]
+
+    if extra_generate_args:
+        cmd.extend(extra_generate_args)
+
+    run_cmd(cmd, cwd=env.repo_root)
+    if not out_json.exists():
+        raise FileNotFoundError(f"Expected output not found: {out_json}")
+    return out_json
+
+
+# ----------------------------
+# round execution
+# ----------------------------
+def run_prepare(
+    round_obj: Dict[str, Any],
+    accepted_env: EnvSpec,
+    round_root: Path,
+    model: str,
+    patch_root: str,
+    extra_generate_args: List[str],
+) -> Dict[str, Any]:
+    prepare_root = round_root / "prepare"
+    ensure_dir(prepare_root)
+
+    subset_json = prepare_root / "subset_t1_discovery.json"
+    out_json = run_generate_response_for_subset(
+        env=accepted_env,
+        subset_name="t1_discovery",
+        pids=round_obj["t1_discovery"],
+        subset_root=prepare_root / "t1_discovery_base",
+        model=model,
+        patch_root=patch_root,
+        split_json_template_path=subset_json,
+        extra_generate_args=extra_generate_args,
+    )
+
+    score = score_results(out_json)
+    prepare_summary = {
+        "accepted_version": accepted_env.name,
+        "subset": "t1_discovery",
+        "num_pids": len(round_obj["t1_discovery"]),
+        "score": score,
+        "results_file": str(out_json),
+    }
+    write_json(prepare_summary, round_root / "prepare_summary.json")
+    return prepare_summary
+
+
+def run_validate(
+    round_obj: Dict[str, Any],
+    base_env: EnvSpec,
+    cand_env: EnvSpec,
+    round_root: Path,
+    model: str,
+    patch_root: str,
+    fastval_margin: float,
+    fullval_margin: float,
+    extra_generate_args: List[str],
+) -> Dict[str, Any]:
+    validate_root = round_root / "validate"
+    ensure_dir(validate_root)
+
+    # ---- T2-fastval ----
+    fastval_base_out = run_generate_response_for_subset(
+        env=base_env,
+        subset_name="t2_fastval",
+        pids=round_obj["t2_fastval"],
+        subset_root=validate_root / "t2_fastval_base",
+        model=model,
+        patch_root=patch_root,
+        split_json_template_path=validate_root / "subset_t2_fastval_base.json",
+        extra_generate_args=extra_generate_args,
+    )
+    fastval_cand_out = run_generate_response_for_subset(
+        env=cand_env,
+        subset_name="t2_fastval",
+        pids=round_obj["t2_fastval"],
+        subset_root=validate_root / "t2_fastval_candidate",
+        model=model,
+        patch_root=patch_root,
+        split_json_template_path=validate_root / "subset_t2_fastval_candidate.json",
+        extra_generate_args=extra_generate_args,
+    )
+
+    fastval_base_score = score_results(fastval_base_out)
+    fastval_cand_score = score_results(fastval_cand_out)
+    fastval_delta = fastval_cand_score["accuracy"] - fastval_base_score["accuracy"]
+    fastval_margin_count = ceil_margin_count(len(round_obj["t2_fastval"]), fastval_margin)
+    fastval_delta_count = fastval_cand_score["correct"] - fastval_base_score["correct"]
+    passes_fastval = fastval_delta_count >= fastval_margin_count
+
+    summary: Dict[str, Any] = {
+        "base_version": base_env.name,
+        "candidate_version": cand_env.name,
+        "t2_fastval": {
+            "num_pids": len(round_obj["t2_fastval"]),
+            "base_score": fastval_base_score,
+            "candidate_score": fastval_cand_score,
+            "delta_accuracy": fastval_delta,
+            "delta_count": fastval_delta_count,
+            "required_margin_count": fastval_margin_count,
+            "passes_fastval": passes_fastval,
+            "base_results_file": str(fastval_base_out),
+            "candidate_results_file": str(fastval_cand_out),
+        },
+    }
+
+    if not passes_fastval:
+        summary["decision"] = {
+            "accepted": False,
+            "reason": "failed_fastval",
+        }
+        write_json(summary, round_root / "decision.json")
+        return summary
+
+    # ---- T2-fullval ----
+    fullval_base_out = run_generate_response_for_subset(
+        env=base_env,
+        subset_name="t2_fullval",
+        pids=round_obj["t2_fullval"],
+        subset_root=validate_root / "t2_fullval_base",
+        model=model,
+        patch_root=patch_root,
+        split_json_template_path=validate_root / "subset_t2_fullval_base.json",
+        extra_generate_args=extra_generate_args,
+    )
+    fullval_cand_out = run_generate_response_for_subset(
+        env=cand_env,
+        subset_name="t2_fullval",
+        pids=round_obj["t2_fullval"],
+        subset_root=validate_root / "t2_fullval_candidate",
+        model=model,
+        patch_root=patch_root,
+        split_json_template_path=validate_root / "subset_t2_fullval_candidate.json",
+        extra_generate_args=extra_generate_args,
+    )
+
+    fullval_base_score = score_results(fullval_base_out)
+    fullval_cand_score = score_results(fullval_cand_out)
+    fullval_delta = fullval_cand_score["accuracy"] - fullval_base_score["accuracy"]
+    fullval_margin_count = ceil_margin_count(len(round_obj["t2_fullval"]), fullval_margin)
+    fullval_delta_count = fullval_cand_score["correct"] - fullval_base_score["correct"]
+    accepted = fullval_delta_count >= fullval_margin_count
+
+    summary["t2_fullval"] = {
+        "num_pids": len(round_obj["t2_fullval"]),
+        "base_score": fullval_base_score,
+        "candidate_score": fullval_cand_score,
+        "delta_accuracy": fullval_delta,
+        "delta_count": fullval_delta_count,
+        "required_margin_count": fullval_margin_count,
+        "base_results_file": str(fullval_base_out),
+        "candidate_results_file": str(fullval_cand_out),
+    }
+    summary["decision"] = {
+        "accepted": accepted,
+        "reason": "accepted_on_fullval" if accepted else "failed_fullval",
+    }
+
+    write_json(summary, round_root / "decision.json")
+    return summary
+
+
+def write_round_summary_md(round_root: Path, round_id: int, decision_json: Dict[str, Any]) -> None:
+    lines = []
+    lines.append(f"# Round {round_id} Summary")
+    lines.append("")
+    lines.append(f"- Base version: `{decision_json.get('base_version', 'N/A')}`")
+    lines.append(f"- Candidate version: `{decision_json.get('candidate_version', 'N/A')}`")
+    lines.append("")
+
+    fv = decision_json.get("t2_fastval", {})
+    lines.append("## T2-fastval")
+    lines.append(f"- Base correct: {fv.get('base_score', {}).get('correct', 'N/A')} / {fv.get('num_pids', 'N/A')}")
+    lines.append(f"- Candidate correct: {fv.get('candidate_score', {}).get('correct', 'N/A')} / {fv.get('num_pids', 'N/A')}")
+    lines.append(f"- Delta count: {fv.get('delta_count', 'N/A')}")
+    lines.append(f"- Passes fastval: {fv.get('passes_fastval', 'N/A')}")
+    lines.append("")
+
+    if "t2_fullval" in decision_json:
+        full = decision_json["t2_fullval"]
+        lines.append("## T2-fullval")
+        lines.append(f"- Base correct: {full.get('base_score', {}).get('correct', 'N/A')} / {full.get('num_pids', 'N/A')}")
+        lines.append(f"- Candidate correct: {full.get('candidate_score', {}).get('correct', 'N/A')} / {full.get('num_pids', 'N/A')}")
+        lines.append(f"- Delta count: {full.get('delta_count', 'N/A')}")
+        lines.append("")
+
+    dec = decision_json.get("decision", {})
+    lines.append("## Decision")
+    lines.append(f"- Accepted: {dec.get('accepted', 'N/A')}")
+    lines.append(f"- Reason: {dec.get('reason', 'N/A')}")
+    lines.append("")
+
+    (round_root / "summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+# ----------------------------
+# subset saving
+# ----------------------------
+def save_subset_files(round_obj: Dict[str, Any], subset_root: Path) -> None:
+    ensure_dir(subset_root)
+    for key in ["t1_all", "t1_discovery", "t1_probe", "t2_all", "t2_fastval", "t2_fullval"]:
+        write_json({"seed": None, "selected": round_obj[key]}, subset_root / f"{key}.json")
+
+
+# ----------------------------
+# cli
+# ----------------------------
+def parse_args() -> argparse.Namespace:
+    ap = argparse.ArgumentParser()
+
+    ap.add_argument("--plan-json", required=True)
+    ap.add_argument("--round-id", type=int, required=True)
+    ap.add_argument("--stage", choices=["prepare", "validate", "all"], required=True)
+
+    ap.add_argument("--accepted-version", required=True)
+    ap.add_argument("--candidate-version", default="candidate_v_next")
+
+    ap.add_argument("--base-repo-root", required=True)
+    ap.add_argument("--candidate-repo-root", default=None)
+
+    ap.add_argument("--base-patch-config", required=True)
+    ap.add_argument("--candidate-patch-config", default=None)
+
+    ap.add_argument("--patch-root", default="generated_patches")
+    ap.add_argument("--results-root", required=True)
+    ap.add_argument("--model", default="gpt-5-mini")
+
+    ap.add_argument("--fastval-margin", type=float, default=0.10,
+                    help="Accuracy margin required on 20-question fastval; default 0.10 = +2/20.")
+    ap.add_argument("--fullval-margin", type=float, default=0.025,
+                    help="Accuracy margin required on 80-question fullval; default 0.025 = +2/80.")
+
+    ap.add_argument("--save-subsets", action="store_true")
+    ap.add_argument("--extra-generate-args", nargs=argparse.REMAINDER, default=[])
+
+    return ap.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+
+    plan_json = Path(args.plan_json).resolve()
+    round_obj = get_round(plan_json, args.round_id)
+
+    results_root = Path(args.results_root).resolve()
+    round_root = results_root / f"round_{int(args.round_id):03d}"
+    ensure_dir(round_root)
+
+    if args.save_subsets:
+        save_subset_files(round_obj, round_root / "subsets")
+
+    base_env = EnvSpec(
+        name=args.accepted_version,
+        repo_root=Path(args.base_repo_root).resolve(),
+        patch_config=args.base_patch_config,
+    )
+
+    candidate_repo_root = Path(args.candidate_repo_root).resolve() if args.candidate_repo_root else Path(args.base_repo_root).resolve()
+    candidate_patch_config = args.candidate_patch_config if args.candidate_patch_config else args.base_patch_config
+
+    cand_env = EnvSpec(
+        name=args.candidate_version,
+        repo_root=candidate_repo_root,
+        patch_config=candidate_patch_config,
+    )
+
+    if args.stage in ["prepare", "all"]:
+        prepare_summary = run_prepare(
+            round_obj=round_obj,
+            accepted_env=base_env,
+            round_root=round_root,
+            model=args.model,
+            patch_root=args.patch_root,
+            extra_generate_args=args.extra_generate_args,
+        )
+        print("\n[PREPARE SUMMARY]")
+        print(json.dumps(prepare_summary, indent=2, ensure_ascii=False))
+
+    if args.stage in ["validate", "all"]:
+        decision_json = run_validate(
+            round_obj=round_obj,
+            base_env=base_env,
+            cand_env=cand_env,
+            round_root=round_root,
+            model=args.model,
+            patch_root=args.patch_root,
+            fastval_margin=args.fastval_margin,
+            fullval_margin=args.fullval_margin,
+            extra_generate_args=args.extra_generate_args,
+        )
+        write_round_summary_md(round_root, args.round_id, decision_json)
+        print("\n[VALIDATE SUMMARY]")
+        print(json.dumps(decision_json, indent=2, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()

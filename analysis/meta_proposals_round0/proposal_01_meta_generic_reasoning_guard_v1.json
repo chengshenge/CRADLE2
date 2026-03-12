@@ -1,0 +1,7 @@
+{
+  "patch_name": "meta_generic_reasoning_guard_v1",
+  "patch_type": "prompt",
+  "relpath": "prompts/meta_generic_reasoning_guard_v1.txt",
+  "content": "Before the final answer, restate the requested target quantity or relation, summarize the evidence actually used, and verify that the final answer matches that target exactly rather than a nearby but different quantity.",
+  "enable": true
+}

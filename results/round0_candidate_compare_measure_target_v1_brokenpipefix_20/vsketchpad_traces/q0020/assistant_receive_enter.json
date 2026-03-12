@@ -1,0 +1,7 @@
+{
+  "self_name": "planner",
+  "sender_name": "multimodal_user_agent",
+  "request_reply": true,
+  "silent": false,
+  "message_preview": "OBSERVATION: Execution success. The output is as follows:\nParaguay: 12.51%, Laos: 9.29%\nSum of smallest two: 21.80%\nLargest (Czechia): 21.37%\nIs sum of smallest two > largest? -> True\n\n\nPlease generate the next THOUGHT and ACTION. If you can get the answer, please also reply with ANSWER: <your answer> and ends with TERMINATE."
+}

@@ -1,0 +1,5 @@
+{
+  "error": "name 'task_directory' is not defined",
+  "exception_type": "NameError",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/chengshengge/merge/CRADLE2/scripts/run_visual_sketchpad_once.py\", line 95, in main\n    import main as vsk_main\n  File \"/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/main.py\", line 124, in <module>\n    _vsk_write_debug_json(task_directory, \"before_initiate_chat.json\", {\nNameError: name 'task_directory' is not defined\n"
+}

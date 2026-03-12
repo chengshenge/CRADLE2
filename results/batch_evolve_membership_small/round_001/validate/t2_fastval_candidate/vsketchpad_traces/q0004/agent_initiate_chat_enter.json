@@ -1,0 +1,7 @@
+{
+  "assistant_name": "planner",
+  "task_id": "testing_case",
+  "n_image": 1,
+  "log_prompt_only": false,
+  "message_preview": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: Is Periwinkle the maximum?\nChoices:\n(A) yes\n(B) no\nSolution:"
+}

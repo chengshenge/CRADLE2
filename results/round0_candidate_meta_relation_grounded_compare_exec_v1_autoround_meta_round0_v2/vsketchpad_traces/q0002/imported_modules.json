@@ -1,0 +1,5 @@
+{
+  "main": "/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/main.py",
+  "agent": "/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/agent.py",
+  "mca": "/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/multimodal_conversable_agent.py"
+}

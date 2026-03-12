@@ -1,0 +1,7 @@
+{
+  "patch_name": "set_based_subtraction_v2",
+  "patch_type": "prompt",
+  "relpath": "prompts/set_based_subtraction_v2.txt",
+  "content": "Apply this workflow only for object-removal or remaining-count questions, such as subtract/remove/how many are left/remaining objects. Do not use it for measurement-reading questions or comparison questions unless the task is explicitly about removing objects from a visible set. Before answering, first make a short grounded list of the visible physical objects using brief descriptive references based on appearance or position, not invented object IDs. Then list the objects removed by each condition using those same grounded references. If one object satisfies multiple removal conditions, count it as removed only once. Then compute the remaining objects as the visible set minus the union of removed objects. Before the final answer, state the remaining grounded object references or the final remaining count and verify that the subtraction used unique removed objects rather than double-counting overlapping conditions.",
+  "enable": true
+}

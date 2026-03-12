@@ -1,0 +1,31 @@
+{
+  "num_input_cards": 16,
+  "num_clusters": 4,
+  "num_emitted_proposals": 3,
+  "proposals": [
+    {
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0/proposal_01_meta_generic_reasoning_guard_v1.json",
+      "sidecar_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0/proposal_01_meta_generic_reasoning_guard_v1.sidecar.json",
+      "cluster": "generic_reasoning_check",
+      "num_cards": 4,
+      "patch_name": "meta_generic_reasoning_guard_v1",
+      "risk_of_overfitting": "low"
+    },
+    {
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0/proposal_02_meta_relation_grounded_compare_v1.json",
+      "sidecar_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0/proposal_02_meta_relation_grounded_compare_v1.sidecar.json",
+      "cluster": "comparison_relation",
+      "num_cards": 3,
+      "patch_name": "meta_relation_grounded_compare_v1",
+      "risk_of_overfitting": "low"
+    },
+    {
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0/proposal_03_meta_set_object_listing_v1.json",
+      "sidecar_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0/proposal_03_meta_set_object_listing_v1.sidecar.json",
+      "cluster": "set_counting_or_dedup",
+      "num_cards": 2,
+      "patch_name": "meta_set_object_listing_v1",
+      "risk_of_overfitting": "low"
+    }
+  ]
+}

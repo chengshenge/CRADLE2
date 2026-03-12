@@ -1,0 +1,5 @@
+{
+  "cluster_id": "stall_refinement_comparison_relation",
+  "mode": "round_report_stall_refinement",
+  "error": "'OpenAI' object has no attribute 'responses'"
+}

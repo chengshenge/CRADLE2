@@ -1,0 +1,352 @@
+#!/usr/bin/env python3
+import argparse
+import json
+import os
+import sys
+import traceback
+from pathlib import Path
+
+
+def _dump_json(task_dir: str, filename: str, payload):
+    try:
+        if not task_dir:
+            return
+        os.makedirs(task_dir, exist_ok=True)
+        with open(os.path.join(task_dir, filename), "w", encoding="utf-8") as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2, default=str)
+    except Exception:
+        pass
+
+
+def _mark(name: str, content: str = ""):
+    try:
+        with open(f"/tmp/{name}.txt", "w", encoding="utf-8") as f:
+            f.write(content or "")
+    except Exception:
+        pass
+
+
+def _compute_task_dir(task_input: str, output_dir: str) -> str:
+    _task_input = os.path.abspath(str(task_input or "").strip())
+    _qid = os.path.basename(_task_input.rstrip(os.sep)) if _task_input else ""
+    if _qid and _qid.lower().endswith(".json"):
+        _qid = os.path.basename(os.path.dirname(_task_input))
+    if not _qid and _task_input:
+        _qid = os.path.basename(os.path.dirname(_task_input))
+    _trace_root = os.path.abspath(str(output_dir or "").strip())
+    return os.path.join(_trace_root, _qid) if (_trace_root and _qid) else ""
+
+
+def _read_text(path: Path) -> str:
+    try:
+        return path.read_text(encoding="utf-8", errors="ignore")
+    except Exception:
+        return ""
+
+
+QUESTION_KEYS = ["question", "query", "prompt", "text", "instruction"]
+
+
+def _extract_question_text(task_input: str) -> str:
+    p = Path(str(task_input or "")).resolve()
+
+    candidates = []
+    if p.is_dir():
+        candidates.extend([
+            p / "question.txt",
+            p / "query.txt",
+            p / "prompt.txt",
+            p / "request.json",
+        ])
+    else:
+        candidates.append(p)
+
+    for c in candidates:
+        if not c.exists() or not c.is_file():
+            continue
+        if c.suffix.lower() == ".json":
+            try:
+                data = json.loads(_read_text(c))
+                if isinstance(data, dict):
+                    for k in QUESTION_KEYS:
+                        v = data.get(k)
+                        if isinstance(v, str) and v.strip():
+                            return v.strip()
+            except Exception:
+                continue
+        else:
+            txt = _read_text(c).strip()
+            if txt:
+                return txt
+    return ""
+
+
+_MEASUREMENT_HINTS = (
+    "measuring cup", "beaker", "capacity", "fill level", "highest amount", "what is the total volume",
+    "how much liquid", "graduated", "scale", "ml", "milliliter", "gram", "grams", "g)", "unit: g",
+)
+_COMPARE_HINTS = (
+    " greater ", " fewer ", " more ", " less ", " left of ", " right of ", " behind ", " in front of ",
+    "are there fewer", "is the number of", "is there more", "is there less",
+)
+_SUBTRACTION_HINTS = (
+    "subtract", "remove", "how many objects are left", "how many are left", "objects are left",
+    "remaining", "left after", "left?",
+)
+
+
+def _detect_execution_hook(question_text: str) -> tuple[str, str]:
+    q = f" {str(question_text or '').strip().lower()} "
+    if not q.strip():
+        return "", "no_question_text"
+
+    if any(k in q for k in _MEASUREMENT_HINTS):
+        return "", "measurement_question_detected_no_subtraction_hook"
+    if any(k in q for k in _COMPARE_HINTS):
+        return "", "comparison_question_detected_no_subtraction_hook"
+    if any(k in q for k in _SUBTRACTION_HINTS):
+        return "set_subtraction_single_pass", "subtract_remove_remaining_question_detected"
+    return "", "no_supported_execution_hook_detected"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--vsk_root", required=True, help="Path to VisualSketchpad repo root")
+    ap.add_argument("--task_input", required=True)
+    ap.add_argument("--output_dir", required=True)
+    ap.add_argument("--task_type", default="vision", choices=["vision", "math", "geo"])
+    ap.add_argument("--task_name", default=None)
+
+    ap.add_argument("--api_key", default="")
+    ap.add_argument("--model", default="gpt-4o")
+    ap.add_argument("--temperature", type=float, default=0.0)
+    ap.add_argument("--max_reply", type=int, default=10)
+
+    ap.add_argument("--som_address", default="")
+    ap.add_argument("--gd_address", default="")
+    ap.add_argument("--da_address", default="")
+
+    ap.add_argument("--patch_config", default="configs/active_patches.json")
+    ap.add_argument("--patch_root", default="generated_patches")
+    ap.add_argument("--patch_debug_dump", action="store_true")
+
+    args = ap.parse_args()
+
+    task_dir = os.environ.get("VSK_TASK_DIR", "").strip() or _compute_task_dir(args.task_input, args.output_dir)
+    if task_dir:
+        os.makedirs(task_dir, exist_ok=True)
+        os.environ["VSK_TASK_DIR"] = task_dir
+        os.environ["VSK_PROMPT_DUMP_PATH"] = os.path.join(task_dir, "patched_prompt.txt")
+        _mark("vsk_task_dir_seen_by_runner", task_dir)
+
+    if getattr(args, "patch_debug_dump", False):
+        os.environ["VSK_PATCH_DEBUG_DUMP"] = "1"
+        _mark("vsk_runner_saw_debug", "1")
+
+    os.environ["VSK_PATCH_CONFIG"] = str(getattr(args, "patch_config", "configs/active_patches.json"))
+    os.environ["VSK_PATCH_ROOT"] = str(getattr(args, "patch_root", "generated_patches"))
+    os.environ["AUTOGEN_USE_DOCKER"] = "False"
+    if args.api_key:
+        os.environ["OPENAI_API_KEY"] = args.api_key
+
+    question_text = _extract_question_text(args.task_input)
+    hook_mode, hook_reason = _detect_execution_hook(question_text)
+
+    enable_subtraction_hook = os.environ.get("VSK_ENABLE_SUBTRACTION_HOOK", "1").strip().lower()
+    if hook_mode == "set_subtraction_single_pass" and enable_subtraction_hook in {"0", "false", "no", "off"}:
+        hook_mode = ""
+        hook_reason = "disabled_by_env"
+
+    os.environ["VSK_QUESTION_TEXT"] = question_text
+    os.environ["VSK_EXECUTION_HOOK_MODE"] = hook_mode
+    os.environ["VSK_EXECUTION_HOOK_REASON"] = hook_reason
+    _dump_json(task_dir, "execution_hook_mode.json", {
+        "question_preview": question_text[:500],
+        "hook_mode": hook_mode,
+        "hook_reason": hook_reason,
+        "hook_disabled_by_env": (enable_subtraction_hook in {"0", "false", "no", "off"}),
+    })
+
+    _dump_json(task_dir, "runner_started.json", {
+        "runner_file": __file__,
+        "task_input": args.task_input,
+        "output_dir": args.output_dir,
+        "task_dir": task_dir,
+        "cwd_at_start": os.getcwd(),
+        "model": args.model,
+        "task_type": args.task_type,
+        "execution_hook_mode": hook_mode,
+        "execution_hook_reason": hook_reason,
+    })
+
+    try:
+        vsk_agent_dir = os.path.join(os.path.abspath(args.vsk_root), "agent")
+        if not os.path.isdir(vsk_agent_dir):
+            raise FileNotFoundError(f"VisualSketchpad agent dir not found: {vsk_agent_dir}")
+
+        sys.path.insert(0, vsk_agent_dir)
+        cradle_root = os.path.abspath(os.path.join(vsk_agent_dir, "..", "..", ".."))
+        sys.path.insert(0, cradle_root)
+        os.environ["VSK_CRADLE_ROOT"] = cradle_root
+
+        import main as vsk_main
+        import agent as vsk_agent_mod
+        import multimodal_conversable_agent as vsk_mca_mod
+
+        _mark("vsk_imported_main_module", getattr(vsk_main, "__file__", ""))
+        _mark("vsk_imported_agent_module", getattr(vsk_agent_mod, "__file__", ""))
+        _mark("vsk_imported_mca_module", getattr(vsk_mca_mod, "__file__", ""))
+
+        _dump_json(task_dir, "imported_modules.json", {
+            "main": getattr(vsk_main, "__file__", ""),
+            "agent": getattr(vsk_agent_mod, "__file__", ""),
+            "mca": getattr(vsk_mca_mod, "__file__", ""),
+        })
+
+        # patch llm config
+        try:
+            cfg0 = vsk_main.llm_config["config_list"][0]
+            cfg0["model"] = args.model
+            if str(args.model).startswith("gpt-5"):
+                cfg0["temperature"] = 1.0
+            else:
+                cfg0["temperature"] = float(args.temperature)
+            cfg0["api_key"] = os.environ.get("OPENAI_API_KEY", "")
+        except Exception:
+            _dump_json(task_dir, "patch_llm_config_error.json", {"traceback": traceback.format_exc()})
+
+        vsk_main.MAX_REPLY = int(args.max_reply)
+
+        # patch vision clients if provided
+        try:
+            if args.som_address or args.gd_address or args.da_address:
+                from gradio_client import Client
+                import tools as vsk_tools
+                if args.som_address:
+                    vsk_tools.som_client = Client(args.som_address)
+                if args.gd_address:
+                    vsk_tools.gd_client = Client(args.gd_address)
+                if args.da_address:
+                    vsk_tools.da_client = Client(args.da_address)
+        except Exception:
+            _dump_json(task_dir, "patch_tools_error.json", {"traceback": traceback.format_exc()})
+
+        # ensure image.png exists when task_input is a directory
+        try:
+            import glob
+            from PIL import Image
+            if os.path.isdir(args.task_input):
+                img_png = os.path.join(args.task_input, "image.png")
+                if not os.path.exists(img_png):
+                    cands = []
+                    for pat in ["*.png", "*.jpg", "*.jpeg", "images/*.png", "images/*.jpg", "images/*.jpeg"]:
+                        cands += glob.glob(os.path.join(args.task_input, pat))
+                    cands = [p for p in cands if os.path.isfile(p) and os.path.basename(p) != "image.png"]
+                    if cands:
+                        Image.open(cands[0]).convert("RGB").save(img_png)
+                        _dump_json(task_dir, "image_materialization.json", {"source": cands[0], "dest": img_png})
+        except Exception:
+            _dump_json(task_dir, "image_materialization_error.json", {"traceback": traceback.format_exc()})
+
+        # patch definite runtime methods
+        try:
+            _orig_initiate_chat = vsk_agent_mod.SketchpadUserAgent.initiate_chat
+
+            def _initiate_chat_probe(self, assistant, message, n_image, task_id, log_prompt_only=False):
+                _mark("vsk_initiate_chat_seen", task_dir)
+                _dump_json(task_dir, "agent_initiate_chat_enter.json", {
+                    "assistant_name": getattr(assistant, "name", None),
+                    "task_id": task_id,
+                    "n_image": n_image,
+                    "log_prompt_only": log_prompt_only,
+                    "message_preview": str(message)[:1000],
+                })
+                try:
+                    ret = _orig_initiate_chat(self, assistant, message, n_image, task_id, log_prompt_only=log_prompt_only)
+                    _dump_json(task_dir, "agent_initiate_chat_return.json", {"returned": True})
+                    return ret
+                except Exception as e:
+                    _dump_json(task_dir, "agent_initiate_chat_exception.json", {
+                        "error": str(e),
+                        "exception_type": type(e).__name__,
+                        "traceback": traceback.format_exc(),
+                    })
+                    raise
+
+            vsk_agent_mod.SketchpadUserAgent.initiate_chat = _initiate_chat_probe
+        except Exception:
+            _dump_json(task_dir, "probe_patch_initiate_chat_error.json", {"traceback": traceback.format_exc()})
+
+        try:
+            _orig_receive = vsk_mca_mod.MultimodalConversableAgent.receive
+
+            def _receive_probe(self, message, sender, request_reply=None, silent=False):
+                _mark("vsk_assistant_receive_seen", task_dir)
+                _dump_json(task_dir, "assistant_receive_enter.json", {
+                    "self_name": getattr(self, "name", None),
+                    "sender_name": getattr(sender, "name", None),
+                    "request_reply": request_reply,
+                    "silent": silent,
+                    "message_preview": str(message)[:1000],
+                })
+                try:
+                    ret = _orig_receive(self, message, sender, request_reply=request_reply, silent=silent)
+                    _dump_json(task_dir, "assistant_receive_return.json", {"returned": True})
+                    return ret
+                except Exception as e:
+                    _dump_json(task_dir, "assistant_receive_exception.json", {
+                        "error": str(e),
+                        "exception_type": type(e).__name__,
+                        "traceback": traceback.format_exc(),
+                    })
+                    raise
+
+            vsk_mca_mod.MultimodalConversableAgent.receive = _receive_probe
+        except Exception:
+            _dump_json(task_dir, "probe_patch_assistant_receive_error.json", {"traceback": traceback.format_exc()})
+
+        try:
+            _orig_run_agent = vsk_main.run_agent
+
+            def _run_agent_probe(task_input, output_dir, task_type="vision", task_name=None):
+                _mark("vsk_run_agent_seen", task_dir)
+                _dump_json(task_dir, "run_agent_enter.json", {
+                    "task_input": task_input,
+                    "output_dir": output_dir,
+                    "task_type": task_type,
+                    "task_name": task_name,
+                    "VSK_TASK_DIR_env": os.environ.get("VSK_TASK_DIR", ""),
+                    "VSK_EXECUTION_HOOK_MODE": os.environ.get("VSK_EXECUTION_HOOK_MODE", ""),
+                })
+                try:
+                    ret = _orig_run_agent(task_input, output_dir, task_type=task_type, task_name=task_name)
+                    _dump_json(task_dir, "run_agent_return.json", {"returned": True})
+                    return ret
+                except Exception as e:
+                    _dump_json(task_dir, "run_agent_exception.json", {
+                        "error": str(e),
+                        "exception_type": type(e).__name__,
+                        "traceback": traceback.format_exc(),
+                    })
+                    raise
+
+            vsk_main.run_agent = _run_agent_probe
+        except Exception:
+            _dump_json(task_dir, "probe_patch_run_agent_error.json", {"traceback": traceback.format_exc()})
+
+        _dump_json(task_dir, "reply_hooks_installed.json", {"task_dir": task_dir})
+        _mark("vsk_reply_hooks_installed", task_dir)
+
+        vsk_main.run_agent(args.task_input, args.output_dir, task_type=args.task_type, task_name=args.task_name)
+
+    except Exception as e:
+        _dump_json(task_dir, "runner_top_exception.json", {
+            "error": str(e),
+            "exception_type": type(e).__name__,
+            "traceback": traceback.format_exc(),
+        })
+        raise
+
+
+if __name__ == "__main__":
+    main()

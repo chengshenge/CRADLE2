@@ -1,0 +1,20 @@
+{
+    "total": {
+        "total_cost": 0,
+        "gpt-5-mini-2025-08-07": {
+            "cost": 0,
+            "prompt_tokens": 19166,
+            "completion_tokens": 2993,
+            "total_tokens": 22159
+        }
+    },
+    "actual": {
+        "total_cost": 0,
+        "gpt-5-mini-2025-08-07": {
+            "cost": 0,
+            "prompt_tokens": 19166,
+            "completion_tokens": 2993,
+            "total_tokens": 22159
+        }
+    }
+}

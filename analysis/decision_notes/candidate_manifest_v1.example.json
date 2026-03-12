@@ -1,0 +1,81 @@
+{
+  "candidate_version": "v2_candidate",
+  "parent_version": "v1",
+  "generated_from_round": 1,
+  "generated_from_subset": "T1-discovery",
+  "summary": "Example environment-level candidate that changes prompt protocol, tool routing, and adds a new helper tool.",
+  "intended_mechanisms": [
+    "comparison_relation",
+    "set_membership_verification",
+    "measurement_target"
+  ],
+  "changes": {
+    "prompt_patches": [
+      {
+        "name": "relation_compare_single_pass_v2",
+        "type": "prompt_protocol",
+        "path": "generated_patches/prompts/relation_compare_single_pass_v2.txt",
+        "target_mechanism": "comparison_relation",
+        "notes": "Shorter structured protocol with tighter JSON output."
+      },
+      {
+        "name": "membership_verification_v1",
+        "type": "prompt_protocol",
+        "path": "generated_patches/prompts/membership_verification_v1.txt",
+        "target_mechanism": "set_membership_verification",
+        "notes": "Object-by-object membership table before subtraction."
+      }
+    ],
+    "tool_routing_changes": [
+      {
+        "name": "route_measurement_questions_to_scale_reader",
+        "type": "routing_change",
+        "target_mechanism": "measurement_target",
+        "modified_files": [
+          "scripts/run_visual_sketchpad_once.py",
+          "third_party/VisualSketchpad/agent/prompt.py"
+        ],
+        "notes": "Direct scale-reading questions into a constrained measurement protocol."
+      }
+    ],
+    "new_tools": [
+      {
+        "name": "read_max_scale_label",
+        "type": "new_tool",
+        "path": "generated_tools/read_max_scale_label.py",
+        "target_mechanism": "measurement_target",
+        "notes": "Helper tool to extract maximum labeled scale value from a cropped region."
+      }
+    ],
+    "modified_files": [
+      "third_party/VisualSketchpad/agent/prompt.py",
+      "scripts/run_visual_sketchpad_once.py",
+      "generated_patches/prompts/relation_compare_single_pass_v2.txt",
+      "generated_patches/prompts/membership_verification_v1.txt",
+      "generated_tools/read_max_scale_label.py"
+    ]
+  },
+  "expected_benefits": [
+    "More stable comparison decisions",
+    "Less double-removal in subtraction tasks",
+    "Cleaner measurement-target handling"
+  ],
+  "known_risks": [
+    "Prompt interference if routing is too broad",
+    "New tool may add latency",
+    "Measurement tool may overfit specific visual layouts"
+  ],
+  "acceptance_targets": {
+    "primary": [
+      "future_batch_accuracy"
+    ],
+    "secondary": [
+      "lower_tool_error_rate",
+      "fewer stalled traces"
+    ]
+  },
+  "notes": [
+    "This manifest is descriptive only in v1.",
+    "The environment comparison is still done by running two repo roots / patch configs side by side."
+  ]
+}

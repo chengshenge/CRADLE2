@@ -1,0 +1,61 @@
+{
+  "cluster_id": "comparison_relation",
+  "proposal": {
+    "patch_name": "meta_relation_grounded_compare_v1",
+    "patch_type": "prompt",
+    "relpath": "prompts/meta_relation_grounded_compare_v1.txt",
+    "content": "Before answering comparison questions, explicitly identify the two compared sets and the evidence for each set. Compute both quantities from grounded object lists, then restate the exact relation being asked and verify whether it is true. Do not answer Yes or No until the compared sets and their counts have both been made explicit.",
+    "enable": true
+  },
+  "intended_failure_mechanism": "comparison_relation",
+  "why_generalizable": "This proposal is phrased in terms of target reasoning mechanisms rather than single-problem entities. It avoids instance-specific nouns and instead constrains a general workflow that can recur across related visual reasoning questions.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "comparison_relation",
+    "num_cards": 3,
+    "pids": [
+      "8",
+      "12",
+      "14"
+    ],
+    "common_terms": [
+      "tiny",
+      "print",
+      "left",
+      "metal",
+      "sedan",
+      "number",
+      "action",
+      "metallic",
+      "rubber",
+      "crops",
+      "python",
+      "display"
+    ],
+    "examples": [
+      {
+        "pid": "8",
+        "gt": "Yes",
+        "pred": "A",
+        "question_preview": "Is the number of tiny gray bicycles that are on the left side of the brown metal sedan greater than the number of things that are to the left of the tiny green bicycle?",
+        "response_preview": "THOUGHT 4: From the zoomed views, I can see one tiny gray bicycle (the silver/tandem bike) on the left side of the brown metal sedan, and there are no objects to the left of the tiny green bicycle. Therefore 1 > 0, so the answer is Yes. ACTION 4: No action nee"
+      },
+      {
+        "pid": "12",
+        "gt": "Yes",
+        "pred": "B",
+        "question_preview": "Are there fewer metallic fighters than rubber objects?",
+        "response_preview": "THOUGHT 9: I've inspected the image and zoomed crops, confirmed there is 1 metallic fighter and 0 rubber objects, so the answer is No. ACTION 9: ```python # python # Final succinct confirmation metallic_fighters_count = 1 rubber_objects_count = 0 print(\"Metall"
+      },
+      {
+        "pid": "14",
+        "gt": "Yes",
+        "pred": "A",
+        "question_preview": "Is the number of tiny objects that are behind the small metal jet less than the number of tiny things left of the tiny sedan?",
+        "response_preview": "THOUGHT 8: The tight crops clearly show 0 tiny objects behind the small metal jet and 1 tiny object left of the tiny sedan. I'll display those crops and print the final counts to confirm the result. ACTION 8: ```python # python # Display the final verification"
+      }
+    ]
+  }
+}

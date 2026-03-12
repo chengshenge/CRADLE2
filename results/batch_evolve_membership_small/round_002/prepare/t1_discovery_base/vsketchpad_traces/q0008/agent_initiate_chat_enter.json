@@ -1,0 +1,7 @@
+{
+  "assistant_name": "planner",
+  "task_id": "testing_case",
+  "n_image": 1,
+  "log_prompt_only": false,
+  "message_preview": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: Find $m \\angle 3$.\nChoices:\n(A) 28\n(B) 38\n(C) 52\n(D) 62\nSolution:"
+}

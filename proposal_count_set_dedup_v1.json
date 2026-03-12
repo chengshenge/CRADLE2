@@ -1,0 +1,7 @@
+{
+  "patch_name": "count_set_dedup_v1",
+  "patch_type": "prompt",
+  "relpath": "prompts/count_set_dedup_v1.txt",
+  "content": "Before giving the final answer for any counting or subtraction-of-sets question, apply this check:\\n1. If multiple subtraction conditions can overlap, treat each physical object as removable at most once.\\n2. Explicitly form three sets in words: the full counted set, the set of objects removed by condition A, and the set of objects removed by condition B or later conditions.\\n3. Merge overlapping removed sets by object identity, not by attribute name.\\n4. Then compute the remaining objects as total unique counted objects minus total unique removed objects.\\n5. Do one short self-check: name the remaining objects or state the unique removed objects, then confirm the final count matches that set-based subtraction.",
+  "enable": true
+}

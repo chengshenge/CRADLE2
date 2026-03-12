@@ -1,0 +1,47 @@
+{
+  "llm_backed": true,
+  "meta_model": "gpt-5-mini",
+  "reasoning_effort": "medium",
+  "allowed_patch_types": [
+    "prompt",
+    "execution"
+  ],
+  "num_input_cards": 16,
+  "num_tasks": 2,
+  "num_emitted_proposals": 2,
+  "proposals": [
+    {
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_after_accept_round0/proposal_01_measurement_target_clarify_v1.json",
+      "sidecar_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_after_accept_round0/proposal_01_measurement_target_clarify_v1.sidecar.json",
+      "cluster": "measurement_target",
+      "num_cards": 2,
+      "patch_name": "measurement_target_clarify_v1",
+      "risk_of_overfitting": "low",
+      "mode": "cluster",
+      "apply_to": [
+        "measurement_target"
+      ],
+      "avoid_categories": [],
+      "patch_type": "prompt",
+      "llm_model": "gpt-5-mini"
+    },
+    {
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_after_accept_round0/proposal_02_set_based_subtraction_v1.json",
+      "sidecar_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_after_accept_round0/proposal_02_set_based_subtraction_v1.sidecar.json",
+      "cluster": "comparison_relation",
+      "num_cards": 1,
+      "patch_name": "set_based_subtraction_v1",
+      "risk_of_overfitting": "medium",
+      "mode": "cluster",
+      "apply_to": [
+        "comparison_relation",
+        "attribute_grounding"
+      ],
+      "avoid_categories": [
+        "measurement_target"
+      ],
+      "patch_type": "prompt",
+      "llm_model": "gpt-5-mini"
+    }
+  ]
+}

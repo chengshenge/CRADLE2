@@ -1,0 +1,5 @@
+{
+  "error": "cannot import name 'MULTIMODAL_ASSISTANT_MESSAGE' from 'prompt' (/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/prompt.py)",
+  "exception_type": "ImportError",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/chengshengge/merge/CRADLE2/scripts/run_visual_sketchpad_once.py\", line 95, in main\n    import main as vsk_main\n  File \"/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/main.py\", line 18, in <module>\n    from prompt import ReACTPrompt, MathPrompt, GeoPrompt, python_codes_for_images_reading, MULTIMODAL_ASSISTANT_MESSAGE\nImportError: cannot import name 'MULTIMODAL_ASSISTANT_MESSAGE' from 'prompt' (/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/prompt.py)\n"
+}

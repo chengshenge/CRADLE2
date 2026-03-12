@@ -1,0 +1,6 @@
+{
+  "question_preview": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: Are there fewer metallic fighters than rubber objects?\nChoices:\n(A) Yes\n(B) No\nSolution:",
+  "hook_mode": "",
+  "hook_reason": "comparison_question_detected_no_subtraction_hook",
+  "hook_disabled_by_env": false
+}

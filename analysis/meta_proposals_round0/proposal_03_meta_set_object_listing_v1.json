@@ -1,0 +1,7 @@
+{
+  "patch_name": "meta_set_object_listing_v1",
+  "patch_type": "prompt",
+  "relpath": "prompts/meta_set_object_listing_v1.txt",
+  "content": "Before answering object-removal or counting questions, first list the visible physical objects one by one. Then list the removed objects by physical identity, not only by attribute labels. If one object satisfies multiple removal conditions, count it as removed only once. Finally compute the remaining set from the unique object list and confirm that the final count matches the explicitly listed remaining objects.",
+  "enable": true
+}

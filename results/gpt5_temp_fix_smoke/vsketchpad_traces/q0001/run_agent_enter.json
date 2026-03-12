@@ -1,0 +1,7 @@
+{
+  "task_input": "/tmp/vsk_q0001_wj79lk2n/q0001",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/gpt5_temp_fix_smoke/vsketchpad_traces",
+  "task_type": "vision",
+  "task_name": null,
+  "VSK_TASK_DIR_env": "/home/chengshengge/merge/CRADLE2/results/gpt5_temp_fix_smoke/vsketchpad_traces/q0001"
+}

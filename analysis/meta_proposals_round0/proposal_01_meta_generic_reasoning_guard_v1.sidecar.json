@@ -1,0 +1,62 @@
+{
+  "cluster_id": "generic_reasoning_check",
+  "proposal": {
+    "patch_name": "meta_generic_reasoning_guard_v1",
+    "patch_type": "prompt",
+    "relpath": "prompts/meta_generic_reasoning_guard_v1.txt",
+    "content": "Before the final answer, restate the requested target quantity or relation, summarize the evidence actually used, and verify that the final answer matches that target exactly rather than a nearby but different quantity.",
+    "enable": true
+  },
+  "intended_failure_mechanism": "generic_reasoning_check",
+  "why_generalizable": "This proposal is phrased in terms of target reasoning mechanisms rather than single-problem entities. It avoids instance-specific nouns and instead constrains a general workflow that can recur across related visual reasoning questions.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "generic_reasoning_check",
+    "num_cards": 4,
+    "pids": [
+      "3",
+      "7",
+      "9",
+      "17"
+    ],
+    "common_terms": [
+      "action",
+      "thought",
+      "needed",
+      "abc",
+      "boc",
+      "time",
+      "past",
+      "incenter",
+      "angle",
+      "bisectors",
+      "eight",
+      "hand"
+    ],
+    "examples": [
+      {
+        "pid": "3",
+        "gt": "145°",
+        "pred": "C",
+        "question_preview": "△ABC的两内角平分线OB、OC相交于点O，若∠A＝110°，则∠BOC＝（）",
+        "response_preview": "THOUGHT 0: O is the incenter (intersection of internal angle bisectors). The angle at the incenter between the bisectors of B and C is ∠BOC = 90° + (∠A)/2. With ∠A = 110°, ∠BOC = 90° + 55° = 145°. ACTION 0: No action needed. ANSWER: 145° (C)."
+      },
+      {
+        "pid": "7",
+        "gt": "quarter",
+        "pred": "E",
+        "question_preview": "What time is shown? Answer by typing a time word, not a number. It is (_) after eight.",
+        "response_preview": "THOUGHT 2: The minute hand is pointing at 3 (15 minutes) and the hour hand is just past 8, so the time is a quarter past eight. ACTION 2: No action needed. ANSWER: quarter past (E)"
+      },
+      {
+        "pid": "9",
+        "gt": "8",
+        "pred": "D",
+        "question_preview": "如图是一株美丽的勾股树，其中所有四边形都是正方形，所有的三角形都是直角三角形，若正方形A、B的面积分别为5、3，则最大正方形C的面积是（）",
+        "response_preview": "THOUGHT 0: 这是一个勾股树问题，正方形A、B分别位于直角三角形的两条直角边上，最大正方形C位于斜边上。根据勾股定理，斜边对应正方形的面积等于两条直角边对应正方形面积之和，因此 C 的面积 = A + B = 5 + 3 = 8。 ACTION 0: No action needed. ANSWER: 8 (D)"
+      }
+    ]
+  }
+}

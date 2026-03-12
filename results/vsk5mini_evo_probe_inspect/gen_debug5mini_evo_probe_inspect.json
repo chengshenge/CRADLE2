@@ -1,0 +1,75 @@
+{
+    "1": {
+        "pid": "1",
+        "question": "When a spring does work on an object, we cannot find the work by simply multiplying the spring force by the object's displacement. The reason is that there is no one value for the force-it changes. However, we can split the displacement up into an infinite number of tiny parts and then approximate the force in each as being constant. Integration sums the work done in all those parts. Here we use the generic result of the integration.\r\n\r\nIn Figure, a cumin canister of mass $m=0.40 \\mathrm{~kg}$ slides across a horizontal frictionless counter with speed $v=0.50 \\mathrm{~m} / \\mathrm{s}$. It then runs into and compresses a spring of spring constant $k=750 \\mathrm{~N} / \\mathrm{m}$. When the canister is momentarily stopped by the spring, by what distance $d$ is the spring compressed?",
+        "image": "images/1.jpg",
+        "choices": null,
+        "unit": null,
+        "precision": 1.0,
+        "answer": "1.2",
+        "question_type": "free_form",
+        "answer_type": "float",
+        "metadata": {
+            "category": "math-targeted-vqa",
+            "context": "scientific figure",
+            "grade": "college",
+            "img_height": 720,
+            "img_width": 1514,
+            "language": "english",
+            "skills": [
+                "scientific reasoning"
+            ],
+            "source": "SciBench",
+            "split": "testmini",
+            "task": "textbook question answering"
+        },
+        "query": "Hint: Please answer the question requiring a floating-point number with one decimal place and provide the final value, e.g., 1.2, 1.3, 1.4, at the end.\n\nQuestion: When a spring does work on an object, we cannot find the work by simply multiplying the spring force by the object's displacement. The reason is that there is no one value for the force-it changes. However, we can split the displacement up into an infinite number of tiny parts and then approximate the force in each as being constant. Integration sums the work done in all those parts. Here we use the generic result of the integration.\r\n\r\nIn Figure, a cumin canister of mass $m=0.40 \\mathrm{~kg}$ slides across a horizontal frictionless counter with speed $v=0.50 \\mathrm{~m} / \\mathrm{s}$. It then runs into and compresses a spring of spring constant $k=750 \\mathrm{~N} / \\mathrm{m}$. When the canister is momentarily stopped by the spring, by what distance $d$ is the spring compressed?\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 1: The energy-conservation calculation gave d = v * sqrt(m/k) = 0.011547 m = 1.155 cm. Rounding to one decimal place (as requested) yields 1.2 cm. No further action is needed.\n\nACTION 1: No action needed.\n\nANSWER: 1.2 cm",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/"
+    },
+    "2": {
+        "pid": "2",
+        "question": "what is the total volume of the measuring cup?",
+        "image": "images/2.jpg",
+        "choices": null,
+        "unit": "g",
+        "precision": null,
+        "answer": "1000",
+        "question_type": "free_form",
+        "answer_type": "integer",
+        "metadata": {
+            "category": "general-vqa",
+            "context": "natural image",
+            "grade": "daily life",
+            "img_height": 768,
+            "img_width": 1024,
+            "language": "english",
+            "skills": [
+                "numeric commonsense",
+                "arithmetic reasoning"
+            ],
+            "source": "TextVQA",
+            "split": "testmini",
+            "task": "visual question answering"
+        },
+        "query": "Hint: Please answer the question requiring an integer answer and provide the final value, e.g., 1, 2, 3, at the end.\n\nQuestion: what is the total volume of the measuring cup? (Unit: g)\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 9: No further inspection is needed \u2014 the measuring cup's maximum marking is 1000 g. I'll output the final confirmed value.\n\nACTION 9:\n```python\n# python\n# Final confirmation output\nprint(1000)\n```\n\nANSWER: 1000",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/"
+    }
+}

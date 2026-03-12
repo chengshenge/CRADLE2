@@ -1,0 +1,15 @@
+{
+  "patch_name": "meta_relation_grounded_compare_exec_v1",
+  "patch_type": "execution",
+  "relpath": "prompts/meta_relation_grounded_compare_exec_v1.txt",
+  "instructions": [
+    "Identify set A and set B exactly as named in the question.",
+    "List the candidate objects for set A with visible evidence for each object.",
+    "List the candidate objects for set B with visible evidence for each object.",
+    "Count both grounded sets explicitly.",
+    "Restate the exact comparison relation being asked and check whether it is true before answering Yes or No."
+  ],
+  "description": "Follow this grounded comparison workflow before answering comparison questions.",
+  "intended_failure_mechanism": "comparison_relation",
+  "enable": true
+}

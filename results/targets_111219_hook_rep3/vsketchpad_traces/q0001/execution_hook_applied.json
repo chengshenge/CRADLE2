@@ -1,0 +1,7 @@
+{
+  "hook_mode": "set_subtraction_single_pass",
+  "hook_added": true,
+  "hook_disabled_by_env": false,
+  "query_preview": "Hint: Please answer the question requiring an integer answer and provide the final value, e.g., 1, 2, 3, at the end.\n\nQuestion: Subtract all red things. Subtract all tiny matte balls. How many objects are left?\nSolution:",
+  "question_category": "set_counting_or_dedup"
+}

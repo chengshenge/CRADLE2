@@ -1,0 +1,171 @@
+{
+    "61": {
+        "pid": "61",
+        "question": "Is Coral the roughest?",
+        "image": "images/61.jpg",
+        "choices": [
+            "yes",
+            "no"
+        ],
+        "unit": null,
+        "precision": null,
+        "answer": "no",
+        "question_type": "multi_choice",
+        "answer_type": "text",
+        "metadata": {
+            "category": "general-vqa",
+            "context": "scatter plot",
+            "grade": "daily life",
+            "img_height": 400,
+            "img_width": 427,
+            "language": "english",
+            "skills": [
+                "statistical reasoning"
+            ],
+            "source": "FigureQA",
+            "split": "testmini",
+            "task": "figure question answering"
+        },
+        "query": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: Is Coral the roughest?\nChoices:\n(A) yes\n(B) no\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 3: From the displayed plot, the coral (orange) points form a smooth, steadily decreasing line with little scatter, while the purple points show larger variability and more fluctuation. Therefore coral is not the roughest.\n\nACTION 3: No action needed.\n\nANSWER: No \u2014 the answer is (B).",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "B",
+        "prediction": "no",
+        "true_false": true
+    },
+    "62": {
+        "pid": "62",
+        "question": "\u5982\u56fe\uff0cE\uff0cF\u5206\u522b\u662f\u83f1\u5f62ABCD\u7684\u8fb9AB\uff0cAD\u7684\u4e2d\u70b9\uff0c\u4e14AB\uff1d5\uff0cAC\uff1d6\uff0e\u5219EF\u7684\u957f\u4e3a\uff08\uff09",
+        "image": "images/62.jpg",
+        "choices": [
+            "4",
+            "5",
+            "5.5",
+            "6"
+        ],
+        "unit": null,
+        "precision": null,
+        "answer": "4",
+        "question_type": "multi_choice",
+        "answer_type": "text",
+        "metadata": {
+            "category": "math-targeted-vqa",
+            "context": "geometry diagram",
+            "grade": "high school",
+            "img_height": 138,
+            "img_width": 160,
+            "language": "chinese",
+            "skills": [
+                "geometry reasoning",
+                "algebraic reasoning"
+            ],
+            "source": "GeoQA+",
+            "split": "testmini",
+            "task": "geometry problem solving"
+        },
+        "query": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: \u5982\u56fe\uff0cE\uff0cF\u5206\u522b\u662f\u83f1\u5f62ABCD\u7684\u8fb9AB\uff0cAD\u7684\u4e2d\u70b9\uff0c\u4e14AB\uff1d5\uff0cAC\uff1d6\uff0e\u5219EF\u7684\u957f\u4e3a\uff08\uff09\nChoices:\n(A) 4\n(B) 5\n(C) 5.5\n(D) 6\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 1: The computed EF length is 4.0 from the previous calculation, which matches choice (A).\n\nACTION 1: No action needed.\n\nANSWER: 4, so the correct choice is (A).",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "4",
+        "true_false": true
+    },
+    "63": {
+        "pid": "63",
+        "question": "Subtract all red matte cubes. Subtract all small green metal objects. How many objects are left?",
+        "image": "images/63.jpg",
+        "choices": null,
+        "unit": null,
+        "precision": null,
+        "answer": "7",
+        "question_type": "free_form",
+        "answer_type": "integer",
+        "metadata": {
+            "category": "math-targeted-vqa",
+            "context": "synthetic scene",
+            "grade": "elementary school",
+            "img_height": 240,
+            "img_width": 320,
+            "language": "english",
+            "skills": [
+                "arithmetic reasoning"
+            ],
+            "source": "CLEVR-Math",
+            "split": "testmini",
+            "task": "math word problem"
+        },
+        "query": "Hint: Please answer the question requiring an integer answer and provide the final value, e.g., 1, 2, 3, at the end.\n\nQuestion: Subtract all red matte cubes. Subtract all small green metal objects. How many objects are left?\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 9: The image shows 8 distinct objects total; there is one red matte cube (left) and no small green metal objects (the green metal sphere is large), so 8 - 1 - 0 = 7 remain. I'll display the image and print the final counts one last time.\n\nACTION 9:\n```python\n# python\nprint(\"Final display and counts:\")\ndisplay(image_1)\n\ntotal_objects = 8\nred_matte_cubes = 1\nsmall_green_metal_objects = 0\nremaining = total_objects - red_matte_cubes - small_green_metal_objects\n\nprint(f\"Total objects (observed): {total_objects}\")\nprint(f\"Red matte cubes (to subtract): {red_matte_cubes}\")\nprint(f\"Small green metal objects (to subtract): {small_green_metal_objects}\")\nprint(f\"Remaining objects after subtraction: {remaining}\")\n```\n\nANSWER: 7",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "7",
+        "prediction": "7",
+        "true_false": true
+    },
+    "64": {
+        "pid": "64",
+        "question": "The diagrams below show two pure samples of gas in identical closed, rigid containers. Each colored ball represents one gas particle. Both samples have the same number of particles. Compare the average kinetic energies of the particles in each sample. Which sample has the higher temperature?",
+        "image": "images/64.jpg",
+        "choices": [
+            "neither; the samples have the same temperature",
+            "sample A",
+            "sample B"
+        ],
+        "unit": null,
+        "precision": null,
+        "answer": "sample A",
+        "question_type": "multi_choice",
+        "answer_type": "text",
+        "metadata": {
+            "category": "general-vqa",
+            "context": "scientific figure",
+            "grade": "elementary school",
+            "img_height": 405,
+            "img_width": 550,
+            "language": "english",
+            "skills": [
+                "scientific reasoning"
+            ],
+            "source": "ScienceQA",
+            "split": "testmini",
+            "task": "textbook question answering"
+        },
+        "query": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: The diagrams below show two pure samples of gas in identical closed, rigid containers. Each colored ball represents one gas particle. Both samples have the same number of particles. Compare the average kinetic energies of the particles in each sample. Which sample has the higher temperature?\nChoices:\n(A) neither; the samples have the same temperature\n(B) sample A\n(C) sample B\nSolution:",
+        "caption": "",
+        "ocr": [],
+        "response": "THOUGHT 0: Temperature is proportional to the average kinetic energy of the particles. From the diagram in image_1, the particles in both containers show the same distribution of speeds (same arrow lengths/coloring), so their average kinetic energies are the same.\n\nACTION 0: No action needed.\n\nANSWER: (A) neither; the samples have the same temperature.",
+        "agent": "visual_sketchpad",
+        "backbone_model": "gpt-5-mini",
+        "vsk_max_reply": 10,
+        "vsk_keep_traces": true,
+        "vsk_som_address": "http://127.0.0.1:8080/",
+        "vsk_gd_address": "http://127.0.0.1:8081/",
+        "vsk_da_address": "http://127.0.0.1:8082/",
+        "extraction": "A",
+        "prediction": "neither; the samples have the same temperature",
+        "true_false": false
+    }
+}

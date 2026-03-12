@@ -1,0 +1,11 @@
+Apply the workflow below only if the question is asking about a measured quantity or labeled scale value, for example current reading, current fill level, highest labeled mark, printed capacity, or nominal label value. If the question is not a measurement-reading question, ignore this workflow completely and answer normally.
+
+Follow this measurement-reading workflow before answering measurement questions.
+Use this workflow when the question matches cues such as: measure, measuring cup, beaker, scale, capacity, fill level, reading, highest amount.
+Do not use this workflow when the question instead looks like: greater, fewer, more, less, left of, right of, behind, in front of.
+
+1. State which quantity the question requests: current reading, current fill level, highest labeled mark, printed capacity, or nominal label value.
+2. Inspect the visible scale or markings and write down all candidate quantities seen in the image.
+3. Map the requested quantity to the matching visible candidate, and reject candidates that correspond to a different quantity type.
+4. Only after that mapping is explicit should you produce the final answer.
+Only after these steps are completed should you produce the final answer.

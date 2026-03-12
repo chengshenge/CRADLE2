@@ -1,0 +1,7 @@
+{
+  "assistant_name": "planner",
+  "task_id": "testing_case",
+  "n_image": 1,
+  "log_prompt_only": false,
+  "message_preview": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\n\nQuestion: Based on the food web, what would likely happen if the number of large roach would decrease?\nChoices:\n(A) The population of steelheads would decrease.\n(B) The population of stickleback fry would increase.\n(C) The population of predatory insects would increase.\n(D) The population of predatory insects would decrease.\nSolution:"
+}

@@ -1,0 +1,7 @@
+{
+  "self_name": "planner",
+  "sender_name": "multimodal_user_agent",
+  "request_reply": true,
+  "silent": false,
+  "message_preview": "OBSERVATION: Execution success. The output is as follows:\n<img src='/home/chengshengge/merge/CRADLE2/results/round0_baseline20/vsketchpad_traces/q0002/7934db02789045cb8a6b508a5e2f02f3.png'>\nFinal answer (g): 1000\n\n\nPlease generate the next THOUGHT and ACTION. If you can get the answer, please also reply with ANSWER: <your answer> and ends with TERMINATE."
+}

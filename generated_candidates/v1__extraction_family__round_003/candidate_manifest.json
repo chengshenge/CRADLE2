@@ -1,0 +1,30 @@
+{
+  "protocol_version": "candidate_builder_v2",
+  "round_id": 3,
+  "parent_version": "v1",
+  "candidate_version": "v1__extraction_family__round_003",
+  "candidate_type": "extraction_candidate",
+  "candidate_family": "extraction_family",
+  "builder_action": "build_extraction_candidate_v1",
+  "target_failure_family": "extraction_failure",
+  "target_pids": [
+    "102"
+  ],
+  "rationale": "Dominant residuals look like answer extraction/output-format issues; improve extraction before changing reasoning.",
+  "expected_risks": [
+    "May improve metrics without improving actual reasoning quality"
+  ],
+  "validation_targets": [
+    "t2_fastval",
+    "t2_fullval"
+  ],
+  "base_repo_root": "/home/chengshengge/merge/CRADLE2",
+  "candidate_repo_root": "/home/chengshengge/merge/CRADLE2/generated_candidates/v1__extraction_family__round_003/repo",
+  "candidate_patch_config": "configs/active_patches.accepted_relation_compare_single_pass_v1.clean.json",
+  "build_result": {
+    "modified_files": [
+      "evaluation/extract_answer.py"
+    ],
+    "summary": "Patched quick_extract to parse multiline ANSWER lines and robust multi-choice letters."
+  }
+}

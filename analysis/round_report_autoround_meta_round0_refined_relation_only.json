@@ -1,0 +1,27 @@
+{
+  "run_suffix": "autoround_meta_round0_refined_relation_only",
+  "model": "gpt-5-mini",
+  "max_num_problems": 20,
+  "target_pids": [
+    "11",
+    "12",
+    "19"
+  ],
+  "val_ids": [
+    "5",
+    "6",
+    "15",
+    "20"
+  ],
+  "baseline_results": "results/round0_baseline20/out.json",
+  "baseline_val_cards": "analysis/val_cards_round0_baseline.jsonl",
+  "generate_hard_timeout_seconds": 3600,
+  "generate_stall_timeout_seconds": 240,
+  "skipped_proposals": [
+    {
+      "proposal_json": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0_refined/proposal_02_meta_relation_grounded_compare_exec_v1.json",
+      "error": "generate_response trace activity stalled for > 240s in /home/chengshengge/merge/CRADLE2/results/round0_candidate_meta_relation_grounded_compare_exec_v1_autoround_meta_round0_refined_relation_only"
+    }
+  ],
+  "candidates": []
+}

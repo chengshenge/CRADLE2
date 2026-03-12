@@ -1,0 +1,43 @@
+[MEMBERSHIP_HOOK_V1]
+
+Apply only to visual subtract/remove/remaining-count questions.
+Otherwise ignore completely.
+
+Required steps:
+1. Enumerate visible objects in stable order.
+2. For each object, decide:
+   - red?
+   - tiny?
+   - matte?
+   - ball?
+3. Mark set membership:
+   - in_red_set
+   - in_tiny_matte_ball_set
+4. removed = union(red_set, tiny_matte_ball_set)
+5. remaining = visible_objects - removed
+
+Rules:
+- Do not remove one object twice.
+- Do not skip object-by-object membership checking.
+- Do not jump directly to the final count.
+- If uncertain, state which attribute is uncertain before deciding.
+
+Output exactly:
+{
+  "objects": [
+    {
+      "name": "...",
+      "red": true/false,
+      "tiny": true/false,
+      "matte": true/false,
+      "ball": true/false,
+      "in_red_set": true/false,
+      "in_tiny_matte_ball_set": true/false,
+      "removed": true/false
+    }
+  ],
+  "visible_count": <int>,
+  "removed_count": <int>,
+  "remaining_count": <int>,
+  "final_answer": <int>
+}

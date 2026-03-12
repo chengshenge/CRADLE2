@@ -1,0 +1,57 @@
+{
+  "cluster_id": "stall_refinement_comparison_relation",
+  "proposal": {
+    "patch_name": "relation_compare_single_pass_v1",
+    "patch_type": "execution",
+    "relpath": "prompts/relation_compare_single_pass_v1.txt",
+    "enable": true,
+    "intended_failure_mechanism": "stall_refinement_comparison_relation",
+    "instructions": [
+      "Do a single deterministic pass; do not perform iterative refinement loops or ask follow-up questions.",
+      "Identify the two (or two most relevant) entities involved in the comparison relation from the prompt and image; if more entities are present, pick the two explicitly referenced by the comparison phrase.",
+      "For each entity, extract the primary attribute named in the question (e.g., size, color intensity, number of visible features) using only directly observable evidence from the image.",
+      "For each extracted attribute value, include concise grounding evidence: either region identifier(s) (e.g., bounding box id, region index) or a short textual pointer to the visible label or region description. If no reliable evidence is available, mark the value as \"unknown\".",
+      "Compare the two attribute values with a conservative rule: prefer direct numeric or categorical comparisons; if values are incomparable or missing, return \"cannot_determine\".",
+      "Produce a single final JSON object as the answer with these keys: comparison_result (one of \"A>B\", \"A<B\", \"equal\", \"cannot_determine\"), primary_attribute (string), entity_A (object with fields value and evidence), entity_B (object with fields value and evidence), one_line_rationale (single short sentence grounding the comparison).",
+      "Keep the one_line_rationale strictly to the grounding evidence (mention region ids or observed descriptors) and avoid inference beyond what is visible.",
+      "Limit output to that single JSON object and no additional commentary or step logs."
+    ],
+    "description": "A bounded single-pass execution recipe that prevents stall-inducing refinement by requiring a fixed extraction-then-compare workflow with explicit grounding evidence and a constrained JSON output schema. Suitable for comparison and attribute-grounding prompts where iterative internal revision previously caused timeouts."
+  },
+  "intended_failure_mechanism": "stall_refinement_comparison_relation",
+  "why_generalizable": "Stalls often come from open-ended iterative refinement when comparing grounded attributes. This patch enforces a single-pass, structured extraction+compare procedure with explicit grounding evidence and a constrained output schema. It addresses the mechanism (unbounded internal loops and vague reasoning) rather than any particular content, so it generalizes across comparison and attribute-grounding tasks.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "stall_refinement_comparison_relation",
+    "mode": "round_report_stall_refinement",
+    "patch_hint": "relation_grounded_compare_single_pass_prompt",
+    "num_cards": 1,
+    "examples": [],
+    "apply_to": [
+      "comparison_relation",
+      "attribute_grounding"
+    ],
+    "avoid_categories": [
+      "measurement_target",
+      "set_counting_or_dedup"
+    ],
+    "report_context": {
+      "stalled_proposal": "/home/chengshengge/merge/CRADLE2/analysis/meta_proposals_round0_refined/proposal_02_meta_relation_grounded_compare_exec_v1.json",
+      "error": "generate_response trace activity stalled for > 240s in /home/chengshengge/merge/CRADLE2/results/round0_candidate_meta_relation_grounded_compare_exec_v1_autoround_meta_round0_refined_relation_only"
+    },
+    "_llm_model": "gpt-5-mini"
+  },
+  "apply_to": [
+    "comparison_relation",
+    "attribute_grounding"
+  ],
+  "avoid_categories": [
+    "measurement_target",
+    "set_counting_or_dedup"
+  ],
+  "mode": "round_report_stall_refinement",
+  "llm_model": "gpt-5-mini",
+  "raw_model_text_preview": "{ \"patch_name\": \"relation_compare_single_pass_v1\", \"patch_type\": \"execution\", \"relpath\": \"prompts/relation_compare_single_pass_v1.txt\", \"enable\": true, \"intended_failure_mechanism\": \"stall_refinement_comparison_relation\", \"should_apply_to\": [ \"comparison_relation\", \"attribute_grounding\" ], \"avoid_categories\": [ \"measurement_target\", \"set_counting_or_dedup\" ], \"why_generalizable\": \"Stalls often come from open-ended iterative refinement when comparing grounded attributes. This patch enforces a single-pass, structured extraction+compare procedure with explicit grounding evidence and a constrained output schema. It addresses the mechanism (unbounded internal loops and vague reasoning) rather than any particular content, so it generalizes across comparison and attribute-grounding tasks.\", \"risk_of_overfitting\": \"low\", \"instructions\": [ \"Do a single deterministic pass; do not perform iterative refinement loops or ask follow-up questions.\", \"Identify the two (or two most relevant) entities involved in the comparison relation from the prompt and image; if more entities are present, pick the two explicitly referenced by the comparison phrase.\", \"For each entity, extract the primary attribute named in the question (e.g., size, color intensity, number of visible features) using only directly observable evidence from the image.\", \"For each extracted attribute value, include concise grounding evidence: either region identifier(s) (e.g., bounding box id, region index) or a short textual pointer to the visible label or region description. If no reliable evidence is available, mark the value as \\\"unknown\\\".\", \"Compare the two attribute values with a conservative rule: prefer direct numeric or categorical comparisons; if values are incomparable or missing, return \\\"cannot_determine\\\".\","
+}

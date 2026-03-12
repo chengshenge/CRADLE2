@@ -1,0 +1,165 @@
+{
+    "average": {
+        "accuracy": 0.75,
+        "correct": 3,
+        "total": 4
+    },
+    "question_type": {
+        "free_form": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "multi_choice": {
+            "accuracy": 0.6666666666666666,
+            "correct": 2,
+            "total": 3
+        }
+    },
+    "answer_type": {
+        "integer": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "text": {
+            "accuracy": 0.6666666666666666,
+            "correct": 2,
+            "total": 3
+        }
+    },
+    "language": {
+        "chinese": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "english": {
+            "accuracy": 0.6666666666666666,
+            "correct": 2,
+            "total": 3
+        }
+    },
+    "source": {
+        "FigureQA": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "GeoQA+": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "CLEVR-Math": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "ScienceQA": {
+            "accuracy": 0.0,
+            "correct": 0,
+            "total": 1
+        }
+    },
+    "category": {
+        "math-targeted-vqa": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        },
+        "general-vqa": {
+            "accuracy": 0.5,
+            "correct": 1,
+            "total": 2
+        }
+    },
+    "task": {
+        "figure question answering": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "geometry problem solving": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "math word problem": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "textbook question answering": {
+            "accuracy": 0.0,
+            "correct": 0,
+            "total": 1
+        }
+    },
+    "context": {
+        "scatter plot": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "geometry diagram": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "synthetic scene": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "scientific figure": {
+            "accuracy": 0.0,
+            "correct": 0,
+            "total": 1
+        }
+    },
+    "grade": {
+        "daily life": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "high school": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "elementary school": {
+            "accuracy": 0.5,
+            "correct": 1,
+            "total": 2
+        }
+    },
+    "skills": {
+        "geometry reasoning": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "algebraic reasoning": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "statistical reasoning": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "arithmetic reasoning": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "scientific reasoning": {
+            "accuracy": 0.0,
+            "correct": 0,
+            "total": 1
+        }
+    }
+}

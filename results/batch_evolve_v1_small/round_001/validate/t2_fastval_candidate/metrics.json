@@ -1,0 +1,155 @@
+{
+    "average": {
+        "accuracy": 1.0,
+        "correct": 4,
+        "total": 4
+    },
+    "question_type": {
+        "free_form": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        },
+        "multi_choice": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        }
+    },
+    "answer_type": {
+        "integer": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        },
+        "text": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        }
+    },
+    "language": {
+        "english": {
+            "accuracy": 1.0,
+            "correct": 4,
+            "total": 4
+        }
+    },
+    "source": {
+        "IconQA": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "KVQA": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "FunctionQA": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "FigureQA": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        }
+    },
+    "category": {
+        "math-targeted-vqa": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        },
+        "general-vqa": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        }
+    },
+    "task": {
+        "math word problem": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "visual question answering": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "textbook question answering": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "figure question answering": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        }
+    },
+    "context": {
+        "abstract scene": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "natural image": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "function plot": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "bar chart": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        }
+    },
+    "grade": {
+        "elementary school": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "daily life": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        },
+        "college": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        }
+    },
+    "skills": {
+        "algebraic reasoning": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "statistical reasoning": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        },
+        "arithmetic reasoning": {
+            "accuracy": 1.0,
+            "correct": 2,
+            "total": 2
+        },
+        "numeric commonsense": {
+            "accuracy": 1.0,
+            "correct": 1,
+            "total": 1
+        }
+    }
+}

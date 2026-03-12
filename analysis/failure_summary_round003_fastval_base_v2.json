@@ -1,0 +1,82 @@
+{
+  "protocol_version": "failure_analysis_v2",
+  "results_file": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_003/validate/t2_fastval_base/out.json",
+  "total": 4,
+  "correct": 1,
+  "accuracy": 0.25,
+  "num_incorrect": 3,
+  "family_counts_all": {
+    "unknown": 1,
+    "extraction_failure": 1,
+    "subtraction_membership": 1,
+    "counting_visibility": 1
+  },
+  "family_counts_incorrect": {
+    "extraction_failure": 1,
+    "subtraction_membership": 1,
+    "counting_visibility": 1
+  },
+  "dominant_failure_family": "extraction_failure",
+  "dominant_failure_count": 1,
+  "target_residuals": [
+    {
+      "pid": "102",
+      "family": "extraction_failure",
+      "likely_mechanism": "answer_extraction_or_output_format",
+      "question_text": "The shape is made of unit squares. What is the area of the shape?",
+      "prediction": null,
+      "answer": "6"
+    },
+    {
+      "pid": "103",
+      "family": "subtraction_membership",
+      "likely_mechanism": "object_set_membership_or_attribute_verification",
+      "question_text": "Subtract all small purple matte blocks. Subtract all blocks. How many objects are left?",
+      "prediction": null,
+      "answer": "2"
+    },
+    {
+      "pid": "104",
+      "family": "counting_visibility",
+      "likely_mechanism": "count_or_visibility_filtering",
+      "question_text": "What is the fraction of females facing the camera?",
+      "prediction": null,
+      "answer": "0.8"
+    }
+  ],
+  "incorrect_problem_summaries": [
+    {
+      "pid": "102",
+      "question_text": "The shape is made of unit squares. What is the area of the shape?",
+      "answer": "6",
+      "prediction": null,
+      "extraction": "",
+      "true_false": false,
+      "family": "extraction_failure",
+      "likely_mechanism": "answer_extraction_or_output_format",
+      "response_preview": "THOUGHT 1: By inspection the figure is a 2-by-4 arrangement of unit squares (2 columns and 4 rows), so the total area is 2 * 4 = 8.\n\nACTION 1: No action needed.\nANSWER: 8"
+    },
+    {
+      "pid": "103",
+      "question_text": "Subtract all small purple matte blocks. Subtract all blocks. How many objects are left?",
+      "answer": "2",
+      "prediction": null,
+      "extraction": "",
+      "true_false": false,
+      "family": "subtraction_membership",
+      "likely_mechanism": "object_set_membership_or_attribute_verification",
+      "response_preview": "THOUGHT 3: From the displayed image I can see three objects: a small brown cube (a block), a gray cylinder-like object, and a purple sphere. There are no small purple matte blocks (the purple object is a sphere, not a block). Subtracting all small purple matte blocks removes 0 objects; subtracting all blocks removes the brown cube (1 object). So 3 - 0 - 1 = 2 objects remain (the purple sphere and the gray cylinder).\n\nACTION 3: No action needed.\n\nANSWER: 2"
+    },
+    {
+      "pid": "104",
+      "question_text": "What is the fraction of females facing the camera?",
+      "answer": "0.8",
+      "prediction": null,
+      "extraction": "",
+      "true_false": false,
+      "family": "counting_visibility",
+      "likely_mechanism": "count_or_visibility_filtering",
+      "response_preview": "THOUGHT: From the displayed image I count 5 visible people: 4 females (leftmost, center front in shorts, center-right in white, rightmost with umbrella) and 1 male (behind center-left). All 4 females appear to be facing the camera, so the fraction of females facing the camera is 4/4 = 1.0.\n\nACTION: No action needed.\n\nANSWER: 1.0"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "task_input": "/tmp/vsk_q0012_3egro6ju/q0012",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/round0_after_exec_hook_set_subtraction_fixed/vsketchpad_traces",
+  "task_type": "vision",
+  "task_name": null,
+  "VSK_TASK_DIR_env": "/home/chengshengge/merge/CRADLE2/results/round0_after_exec_hook_set_subtraction_fixed/vsketchpad_traces/q0012",
+  "VSK_EXECUTION_HOOK_MODE": ""
+}

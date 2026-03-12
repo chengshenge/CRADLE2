@@ -1,0 +1,7 @@
+{
+  "self_name": "planner",
+  "sender_name": "multimodal_user_agent",
+  "request_reply": true,
+  "silent": false,
+  "message_preview": "OBSERVATION: Execution error. Exit code: 1, Output:\nERROR: ERROR: Timeout waiting for output from code block\n\n\nPlease fix the error and generate the fixed code, in the next THOUGHT and ACTION."
+}

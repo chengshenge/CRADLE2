@@ -1,0 +1,1 @@
+PATCH TEST: Always print HELLO_PATCH in reasoning.

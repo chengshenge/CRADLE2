@@ -1,0 +1,72 @@
+{
+  "cluster_id": "comparison_relation",
+  "proposal": {
+    "patch_name": "explicit_set_counting_and_comparison_v1",
+    "patch_type": "prompt",
+    "relpath": "prompts/explicit_set_counting_and_comparison_v1.txt",
+    "enable": true,
+    "intended_failure_mechanism": "comparison_relation",
+    "content": "Follow this single-pass structured procedure whenever a question asks to compare numbers or counts of objects, or to subtract/filter sets. Do not apply this procedure to measurement-style questions (time, distance, continuous magnitudes). 1) Paraphrase and label: Identify the comparison operator (>, <, =, more/less, which condition) and label the two sides as Group A and Group B. If the question asks to subtract or remove, treat that as a set-difference operation on the relevant universe. 2) Decompose filters: For each group, separately list (a) attribute filters (color, size, material, finish, shape, 'tiny', 'thin', etc.) and (b) spatial/relational filters (left of, behind, in front of, near). Do not merge different kinds of filters—apply them conjunctively to define the group. 3) Apply set logic once: Compute the set for each group using explicit set operations: intersection for combined filters, difference for 'subtract' statements, union if the question explicitly aggregates multiple sets. If an object satisfies multiple subfilters, count it only once in the final set. 4) Resolve overlaps deterministically: If the same object would belong to both Group A and Group B and the question asks for exclusive membership, clarify by applying the stated operations in order (e.g., apply removals before counting). Avoid assumptions; follow the explicit textual operators in the question. 5) Out-of-scope detection: If answering requires measuring time/distance/continuous magnitude or experimental numeric measurement (measurement_target), stop and return a short, explicit refusal such as: \"out_of_scope_measurement\" rather than guessing. 6) Single-pass verification: Re-count each final set once more to check for missed overlaps or misapplied differences. Do not iterate multiple speculative visual crops—perform one careful deterministic pass. 7) Final output format: Return only the required answer type (integer count, Yes/No, A/B). Immediately after, on a single short line, give the minimal verification: \"Group A = n; Group B = m; reasoning: [brief set operation summary]\". Keep internal deliberation private and concise."
+  },
+  "intended_failure_mechanism": "comparison_relation",
+  "why_generalizable": "This patch trains the agent to treat comparison questions as set-definition, set-operations, and counting problems rather than relying on surface cues. It prescribes a repeatable 1-pass procedure: parse comparison operator, decompose each target group into attribute and spatial filters, apply set arithmetic (union/intersection/difference), count reliably, and then compare. These steps generalize to many visual and attribute-grounding comparison errors without referencing dataset-specific nouns.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "comparison_relation",
+    "num_cards": 3,
+    "pids": [
+      "11",
+      "14",
+      "18"
+    ],
+    "common_terms": [
+      "tiny",
+      "wax",
+      "thin",
+      "red",
+      "things",
+      "left",
+      "red_sphere",
+      "to_subtract",
+      "len",
+      "0",
+      "linda",
+      "layer"
+    ],
+    "examples": [
+      {
+        "pid": "11",
+        "gt": "5",
+        "pred": "6",
+        "question_preview": "Subtract all red things. Subtract all tiny matte balls. How many objects are left?",
+        "response_preview": "THOUGHT: I'll print a final concise summary, display the original image and the red sphere crop for last visual confirmation, and return the final integer answer. ACTION: ```python # Final action: concise summary and confirmation display objects = [ \"blue_cyli"
+      },
+      {
+        "pid": "14",
+        "gt": "Yes",
+        "pred": "A",
+        "question_preview": "Is the number of tiny objects that are behind the small metal jet less than the number of tiny things left of the tiny sedan?",
+        "response_preview": "THOUGHT 8: The tight crops clearly show 0 tiny objects behind the small metal jet and 1 tiny object left of the tiny sedan. I'll display those crops and print the final counts to confirm the result. ACTION 8: ```python # python # Display the final verification"
+      },
+      {
+        "pid": "18",
+        "gt": "Does Linda's snowboard slide down a hill in less time when it has a layer of wax or when it does not have a layer of wax?",
+        "pred": "B",
+        "question_preview": "The passage below describes an experiment. Read the passage and then follow the instructions below. Linda applied a thin layer of wax to the underside of her snowboard and rode the board straight down a hill. Then, she r",
+        "response_preview": "THOUGHT 0: Linda's experiment compares rides with a thin layer of wax versus rides without wax, alternating conditions and averaging times. It does not compare thin vs thick wax. Therefore it can answer whether having a layer of wax (thin) affects sliding time"
+      }
+    ]
+  },
+  "apply_to": [
+    "comparison_relation",
+    "attribute_grounding"
+  ],
+  "avoid_categories": [
+    "measurement_target"
+  ],
+  "mode": "cluster",
+  "llm_model": "gpt-5-mini",
+  "raw_model_text_preview": "{ \"patch_name\": \"explicit_set_counting_and_comparison_v1\", \"patch_type\": \"prompt\", \"relpath\": \"prompts/explicit_set_counting_and_comparison_v1.txt\", \"enable\": true, \"intended_failure_mechanism\": \"comparison_relation\", \"should_apply_to\": [ \"comparison_relation\", \"attribute_grounding\" ], \"avoid_categories\": [ \"measurement_target\" ], \"why_generalizable\": \"This patch trains the agent to treat comparison questions as set-definition, set-operations, and counting problems rather than relying on surface cues. It prescribes a repeatable 1-pass procedure: parse comparison operator, decompose each target group into attribute and spatial filters, apply set arithmetic (union/intersection/difference), count reliably, and then compare. These steps generalize to many visual and attribute-grounding comparison errors without referencing dataset-specific nouns.\", \"risk_of_overfitting\": \"low\", \"content\": \"Follow this single-pass structured procedure whenever a question asks to compare numbers or counts of objects, or to subtract/filter sets. Do not apply this procedure to measurement-style questions (time, distance, continuous magnitudes).\\n\\n1) Paraphrase and label: Identify the comparison operator (>, <, =, more/less, which condition) and label the two sides as Group A and Group B. If the question asks to subtract or remove, treat that as a set-difference operation on the relevant universe.\\n\\n2) Decompose filters: For each group, separately list (a) attribute filters (color, size, material, finish, shape, 'tiny', 'thin', etc.) and (b) spatial/relational filters (left of, behind, in front of, near). Do not merge different kinds of filters—apply them conjunctively to define the group.\\n\\n3) Apply set logic once: Compute the set for each group using explicit set operations: intersection fo"
+}

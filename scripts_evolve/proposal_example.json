@@ -1,0 +1,7 @@
+{
+  "patch_name": "answer_format_numeric_only_v1",
+  "patch_type": "prompt",
+  "relpath": "prompts/answer_format_numeric_only_v1.txt",
+  "content": "When the question expects a numeric answer, put the final answer after ANSWER: as a bare number only. Do not include units unless explicitly required.",
+  "enable": true
+}

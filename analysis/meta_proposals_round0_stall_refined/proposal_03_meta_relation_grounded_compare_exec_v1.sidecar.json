@@ -1,0 +1,81 @@
+{
+  "generator_mode": "cluster",
+  "cluster_id": "comparison_relation",
+  "proposal": {
+    "patch_name": "meta_relation_grounded_compare_exec_v1",
+    "patch_type": "execution",
+    "relpath": "prompts/meta_relation_grounded_compare_exec_v1.txt",
+    "instructions": [
+      "Identify set A and set B exactly as named in the question.",
+      "List the candidate objects for set A with visible evidence for each object.",
+      "List the candidate objects for set B with visible evidence for each object.",
+      "Count both grounded sets explicitly.",
+      "Restate the exact comparison relation being asked and check whether it is true before answering Yes or No."
+    ],
+    "description": "Follow this grounded comparison workflow before answering comparison questions.",
+    "intended_failure_mechanism": "comparison_relation",
+    "should_apply_to": [
+      "comparison_relation",
+      "attribute_grounding"
+    ],
+    "avoid_categories": [
+      "measurement_target"
+    ],
+    "enable": true
+  },
+  "intended_failure_mechanism": "comparison_relation",
+  "why_generalizable": "This proposal is phrased in terms of reusable reasoning workflows rather than instance-specific nouns. It targets a failure mechanism expected to recur across related visual reasoning questions.",
+  "risk_of_overfitting": "medium",
+  "forbidden_singleton_terms_detected": true,
+  "dangerous_terms": [
+    "0",
+    "linda",
+    "wax"
+  ],
+  "cluster_summary": {
+    "cluster_name": "comparison_relation",
+    "num_cards": 3,
+    "pids": [
+      "11",
+      "14",
+      "18"
+    ],
+    "common_terms": [
+      "tiny",
+      "wax",
+      "thin",
+      "red",
+      "things",
+      "left",
+      "red_sphere",
+      "to_subtract",
+      "len",
+      "0",
+      "linda",
+      "layer"
+    ],
+    "examples": [
+      {
+        "pid": "11",
+        "gt": "5",
+        "pred": "6",
+        "question_preview": "Subtract all red things. Subtract all tiny matte balls. How many objects are left?",
+        "response_preview": "THOUGHT: I'll print a final concise summary, display the original image and the red sphere crop for last visual confirmation, and return the final integer answer. ACTION: ```python # Final action: concise summary and confirmation display objects = [ \"blue_cyli"
+      },
+      {
+        "pid": "14",
+        "gt": "Yes",
+        "pred": "A",
+        "question_preview": "Is the number of tiny objects that are behind the small metal jet less than the number of tiny things left of the tiny sedan?",
+        "response_preview": "THOUGHT 8: The tight crops clearly show 0 tiny objects behind the small metal jet and 1 tiny object left of the tiny sedan. I'll display those crops and print the final counts to confirm the result. ACTION 8: ```python # python # Display the final verification"
+      },
+      {
+        "pid": "18",
+        "gt": "Does Linda's snowboard slide down a hill in less time when it has a layer of wax or when it does not have a layer of wax?",
+        "pred": "B",
+        "question_preview": "The passage below describes an experiment. Read the passage and then follow the instructions below. Linda applied a thin layer of wax to the underside of her snowboard and rode the board straight down a hill. Then, she r",
+        "response_preview": "THOUGHT 0: Linda's experiment compares rides with a thin layer of wax versus rides without wax, alternating conditions and averaging times. It does not compare thin vs thick wax. Therefore it can answer whether having a layer of wax (thin) affects sliding time"
+      }
+    ]
+  }
+}

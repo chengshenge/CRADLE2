@@ -1,0 +1,8 @@
+{
+  "task_input": "/tmp/vsk_q0003_6gnojde4/q0003",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/targets_111219_nohook_temp0_rep1/vsketchpad_traces",
+  "task_type": "vision",
+  "task_name": null,
+  "VSK_TASK_DIR_env": "/home/chengshengge/merge/CRADLE2/results/targets_111219_nohook_temp0_rep1/vsketchpad_traces/q0003",
+  "VSK_EXECUTION_HOOK_MODE": ""
+}

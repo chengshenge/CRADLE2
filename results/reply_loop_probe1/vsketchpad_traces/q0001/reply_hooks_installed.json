@@ -1,0 +1,6 @@
+{
+  "task_dir": "/home/chengshengge/merge/CRADLE2/results/reply_loop_probe1/vsketchpad_traces/q0001",
+  "agent_module": "/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/agent.py",
+  "mca_module": "/home/chengshengge/merge/CRADLE2/third_party/VisualSketchpad/agent/multimodal_conversable_agent.py",
+  "conversable_agent_module": "/home/chengshengge/ENTER/envs/vsk_gpu2/lib/python3.10/site-packages/autogen/agentchat/conversable_agent.py"
+}

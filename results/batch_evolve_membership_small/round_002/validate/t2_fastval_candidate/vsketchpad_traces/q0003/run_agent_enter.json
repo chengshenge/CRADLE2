@@ -1,0 +1,8 @@
+{
+  "task_input": "/tmp/vsk_q0003_ywn15zqt/q0003",
+  "output_dir": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_002/validate/t2_fastval_candidate/vsketchpad_traces",
+  "task_type": "vision",
+  "task_name": null,
+  "VSK_TASK_DIR_env": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_002/validate/t2_fastval_candidate/vsketchpad_traces/q0003",
+  "VSK_EXECUTION_HOOK_MODE": "set_subtraction_single_pass"
+}

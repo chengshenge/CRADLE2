@@ -1,0 +1,27 @@
+{
+  "base_version": "v1",
+  "candidate_version": "v2_membership_v1",
+  "t2_fastval": {
+    "num_pids": 4,
+    "base_score": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "candidate_score": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "delta_accuracy": 0.0,
+    "delta_count": 0,
+    "required_margin_count": 1,
+    "passes_fastval": false,
+    "base_results_file": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_001/validate/t2_fastval_base/out.json",
+    "candidate_results_file": "/home/chengshengge/merge/CRADLE2/results/batch_evolve_membership_small/round_001/validate/t2_fastval_candidate/out.json"
+  },
+  "decision": {
+    "accepted": false,
+    "reason": "failed_fastval"
+  }
+}

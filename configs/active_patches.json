@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "enabled": {
+    "prompts": ["prompts/hello_patch.txt"],
+    "tools": [],
+    "policies": [],
+    "extractors": [],
+    "verifiers": []
+  }
+}

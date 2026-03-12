@@ -1,0 +1,53 @@
+{
+  "cluster_id": "measurement_target",
+  "proposal": {
+    "patch_name": "read_measurement_label_v1",
+    "patch_type": "prompt",
+    "relpath": "prompts/read_measurement_label_v1.txt",
+    "enable": true,
+    "intended_failure_mechanism": "measurement_target",
+    "content": "When the question asks for a measured amount shown in the image, follow these steps before answering: 1) Locate numeric labels that are visually attached to the object of interest (printed capacities, scale numbers next to tick marks, or labels close to the container). Prioritize digits and units that are directly on or next to the object rather than text elsewhere in the scene. 2) Zoom in (conceptually) on the suspected label area and read the full numeric string and its unit (examples: ml, L, cc). If multiple numbers appear, prefer the one explicitly indicating capacity or a volume scale for that object. 3) If the object has tick marks with numbers, determine which numeric denotes the highest marked capacity visible on that object; use that number only if it is clearly associated with the object. 4) Normalize interpretation: read the digits as shown; do not invent missing digits if occluded. If a unit conversion is needed to compare (e.g., L vs ml), convert explicitly before answering. 5) Ignore unrelated numbers in the background (signs, packaging, instruments not connected to the object). If you cannot clearly read a number or association, respond 'unknown' rather than guessing. Answer format: provide the numeric value only (no words or extra context) when you can clearly read and associate a measurement with the object; otherwise answer exactly 'unknown'."
+  },
+  "intended_failure_mechanism": "measurement_target",
+  "why_generalizable": "This patch targets the general failure mode of misreading or misprioritizing numerical measurements in images (printed capacities, volume markings, or scale ticks). It gives a reusable, mechanism-level strategy to locate, verify, and prioritize visually associated numeric labels and units rather than relying on context or nearby irrelevant numbers. It applies across containers, gauges, and other measurement displays without depending on any specific token.",
+  "risk_of_overfitting": "low",
+  "forbidden_singleton_terms_detected": false,
+  "dangerous_terms": [],
+  "cluster_summary": {
+    "cluster_name": "measurement_target",
+    "num_cards": 1,
+    "pids": [
+      "19"
+    ],
+    "common_terms": [
+      "highest",
+      "amount",
+      "measures",
+      "5",
+      "class",
+      "zoomed",
+      "clearly",
+      "shows",
+      "printed",
+      "capacity",
+      "600ml",
+      "beaker"
+    ],
+    "examples": [
+      {
+        "pid": "19",
+        "gt": "400",
+        "pred": "600",
+        "question_preview": "what is the highest amount this class measures?",
+        "response_preview": "THOUGHT 5: The zoomed-in image clearly shows the printed capacity \"600ml\" on the beaker, which is the highest amount this glass measures. ACTION 5: No action needed. ANSWER: 600"
+      }
+    ]
+  },
+  "apply_to": [
+    "measurement_target"
+  ],
+  "avoid_categories": [],
+  "mode": "cluster",
+  "llm_model": "gpt-5-mini",
+  "raw_model_text_preview": "{ \"patch_name\": \"read_measurement_label_v1\", \"patch_type\": \"prompt\", \"relpath\": \"prompts/read_measurement_label_v1.txt\", \"enable\": true, \"intended_failure_mechanism\": \"measurement_target\", \"should_apply_to\": [ \"measurement_target\" ], \"avoid_categories\": [], \"why_generalizable\": \"This patch targets the general failure mode of misreading or misprioritizing numerical measurements in images (printed capacities, volume markings, or scale ticks). It gives a reusable, mechanism-level strategy to locate, verify, and prioritize visually associated numeric labels and units rather than relying on context or nearby irrelevant numbers. It applies across containers, gauges, and other measurement displays without depending on any specific token.\", \"risk_of_overfitting\": \"low\", \"content\": \"When the question asks for a measured amount shown in the image, follow these steps before answering:\\n\\n1) Locate numeric labels that are visually attached to the object of interest (printed capacities, scale numbers next to tick marks, or labels close to the container). Prioritize digits and units that are directly on or next to the object rather than text elsewhere in the scene.\\n2) Zoom in (conceptually) on the suspected label area and read the full numeric string and its unit (examples: ml, L, cc). If multiple numbers appear, prefer the one explicitly indicating capacity or a volume scale for that object.\\n3) If the object has tick marks with numbers, determine which numeric denotes the highest marked capacity visible on that object; use that number only if it is clearly associated with the object.\\n4) Normalize interpretation: read the digits as shown; do not invent missing digits if occluded. If a unit conversion is needed to compare (e.g., L vs ml), convert explicitly before answering.\\n5) Ig"
+}

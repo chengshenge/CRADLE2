@@ -1,0 +1,7 @@
+{
+  "patch_name": "meta_relation_grounded_compare_exec_v1",
+  "patch_type": "prompt",
+  "relpath": "prompts/meta_relation_grounded_compare_exec_v1.txt",
+  "content": "Apply the workflow below only if the question explicitly asks for a comparison between two sets or quantities, for example using words such as greater, fewer, more, less, left of, right of, behind, in front of, yes, or no. If the question is not a comparison question, ignore this workflow completely and answer normally.\n\nFollow this grounded comparison workflow before answering comparison questions.\nUse this workflow when the question matches cues such as: greater, fewer, more, less, left of, right of, behind, in front of, yes/no.\nDo not use this workflow when the question instead looks like: total volume, capacity, measure, reading, what is the total, highest amount.\n\n1. Identify set A and set B exactly as named in the question.\n2. List the candidate objects for set A with visible evidence for each object.\n3. List the candidate objects for set B with visible evidence for each object.\n4. Count both grounded sets explicitly.\n5. Restate the exact comparison relation being asked and check whether it is true before answering Yes or No.\nOnly after these steps are completed should you produce the final answer.",
+  "enable": true
+}

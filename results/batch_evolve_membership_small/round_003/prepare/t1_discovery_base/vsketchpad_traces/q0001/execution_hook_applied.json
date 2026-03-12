@@ -1,0 +1,6 @@
+{
+  "hook_mode": "",
+  "question_category": "unknown",
+  "hook_added": false,
+  "question_preview": "Hint: Please answer the question requiring an integer answer and provide the final value, e.g., 1, 2, 3, at the end.\n\nQuestion: What is the value of r at theta=3*pi/2?\nSolution:"
+}
